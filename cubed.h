@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cubed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/19 14:32:38 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/07/20 16:43:48 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 typedef struct s_map
 {
-    
+    char    **grid;
+    int     width;
+    int     height;
+    int     players;
+
 }   t_map;
 
 typedef struct s_graphic
@@ -33,8 +37,6 @@ typedef struct  s_bible
     t_map       *map;
     t_graphic   *graphics;
     t_pos       *player_pos;
-    int         map_width;
-    int         map_height;
 
     void        *mlx;
     void        *mlx_win;
