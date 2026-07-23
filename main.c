@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/09 16:43:43 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/20 16:17:07 by karmanz          ###   ########.fr       */
+/*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
+/*   Updated: 2026/07/23 17:49:35 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cubed.h"
+#include "cub3d.h"
+
+int main()
+{
+	t_bible data;
+	
+	init_mock_data(&data);
+	data.mlx = mlx_init();
+	if (!data.mlx)
+		return (1);
+	data.mlx_win = mlx_new_window(data.mlx, 1024, 800, "cub3d");
+	if (!data.mlx)
+		return (free(data.mlx), 1);
+	mlx_loop(data.mlx);
 
 int main(int ac, char **av)
 {
