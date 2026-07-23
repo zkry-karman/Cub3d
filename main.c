@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/07/23 17:49:35 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/07/23 18:33:29 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main()
 	if (!data.mlx)
 		return (free(data.mlx), 1);
 	mlx_loop(data.mlx);
+}
 
 int main(int ac, char **av)
 {
