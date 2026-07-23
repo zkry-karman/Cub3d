@@ -24,4 +24,15 @@ int main()
 	if (!data.mlx)
 		return (free(data.mlx), 1);
 	mlx_loop(data.mlx);
+
+int main(int ac, char **av)
+{
+    t_bible     master;
+    
+    if (ac != 2)
+    {
+        printf("ERROR\nIncorrect file compilation");
+        return (1);
+    }
+    initialize_master(&master);
 }
