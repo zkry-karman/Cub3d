@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/07/24 14:29:58 by kzhu@student.42.f###   ########.fr       */
+/*   Created: 2026/07/24 14:26:25 by kzhu@studen       #+#    #+#             */
+/*   Updated: 2026/07/24 14:31:44 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main()
+int close_window(t_bible *data)
 {
-	t_bible data;
-	
-	init_mock_data(&data);
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (1);
-	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3d");
-	if (!data.mlx_win)
-		return (free(data.mlx), 1);
-	mlx_loop(data.mlx);
+    mlx_destroy_window(data->mlx, data->mlx_win);
+    // Note: Later, you will need to free your malloc'd map here before exiting!
+    exit(0);
+    return (0);
 }
 
-int main(int ac, char **av)
+int key_press(int key, t_bible *data)
 {
-    t_bible     master;
-    
-    if (ac != 2)
-    {
-        printf("ERROR\nIncorrect file compilation");
-        return (1);
-    }
-    initialize_master(&master);
+    if (key == ESC)
+        close_window(data);
+    return (0);
 }
