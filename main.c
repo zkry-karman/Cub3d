@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/07/24 17:03:41 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/07/24 19:20:37 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main()
 	mlx_hook(data.mlx_win, 17, 1L<<17, (void *)close_window, &data);
 	mlx_loop(data.mlx);
 }
-/*
+
 int main(int ac, char **av)
 {
     t_bible     master;
@@ -38,4 +38,5 @@ int main(int ac, char **av)
         return (1);
     }
     initialize_master(&master);
-}*/
+	parse_cub_file(&master, av[1]);
+}

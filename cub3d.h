@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/24 16:41:42 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/07/24 20:16:09 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_map
 
 typedef struct s_graphic
 {
-    char    *n_path;
-    char    *e_path;
-    char    *s_path;
-    char    *w_path;
+    char    *no_path;
+    char    *ea_path;
+    char    *so_path;
+    char    *we_path;
     int     floor_color;
 	int     ceiling_color;
 }   t_graphic;
