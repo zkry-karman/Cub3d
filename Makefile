@@ -4,7 +4,9 @@ CFLAGS = -Wall -Wextra -Werror -I. -I./mlx
 MLXFLAGS = -L./mlx -lmlx -lXext -lX11 -lm -lz
 RM = rm -f
 
-SRCS = main.c render_window.c
+SRCS =  main.c \
+		window_management/render_window.c \
+		window_management/hooks.c \
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT = libft/libft.a
