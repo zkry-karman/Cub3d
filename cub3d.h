@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/24 14:23:27 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/07/24 16:36:16 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include <stdlib.h>
 # include <string.h>
-# include <mlx/mlx.h>
+# include <stddef.h>
+# include "mlx/mlx.h"
 
 # define WIDTH 1080
 # define HEIGHT 720
@@ -66,5 +67,7 @@ typedef struct  s_bible
 }   t_bible;
 
 void init_mock_data(t_bible *data);
+int key_press(int key, t_bible *data);
+int close_window(t_bible *data);
 
 #endif
