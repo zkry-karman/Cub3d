@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
 /*   Updated: 2026/07/24 14:29:58 by kzhu@student.42.f###   ########.fr       */
@@ -36,4 +36,5 @@ int main(int ac, char **av)
         return (1);
     }
     initialize_master(&master);
+	parse_file(&master, av[1]);
 }
