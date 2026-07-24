@@ -1,0 +1,7 @@
+N ./textures/n_wall.xpm
+E ./textures/e_wall.xpm
+S ./textures/s_wall.xpm
+W ./textures/w_wall.xpm
+
+Floor
+Ceiling
