@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/23 21:33:58 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/24 14:23:27 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define WIDTH 1080
 # define HEIGHT 720
+# define ESC 65307
 
 typedef struct s_map
 {

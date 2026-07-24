@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/07/24 14:35:45 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/07/24 14:29:58 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int main()
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
-	data.mlx_win = mlx_new_window(data.mlx, 1024, 800, "cub3d");
-	if (!data.mlx)
+	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3d");
+	if (!data.mlx_win)
 		return (free(data.mlx), 1);
 	mlx_loop(data.mlx);
 }
