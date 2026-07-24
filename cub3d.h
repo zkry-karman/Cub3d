@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
 /*   Updated: 2026/07/24 14:23:27 by kzhu@student.42.f###   ########.fr       */
@@ -30,8 +30,12 @@ typedef struct s_map
 
 typedef struct s_graphic
 {
-    int floor_color;
-	int ceiling_color;
+    char    *n_path;
+    char    *e_path;
+    char    *s_path;
+    char    *w_path;
+    int     floor_color;
+	int     ceiling_color;
 }   t_graphic;
 
 //for raycasting
