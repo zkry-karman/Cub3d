@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/24 14:42:56 by zkarman           #+#    #+#             */
+/*   Updated: 2026/07/24 22:04:17 by karmanz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+//need to check for duplicate textures (ie 2 NO lines)
+
+void    assign_we_texture(t_bible *master, char *line)
+{
+    line = skip_whitespace(line);
+    master->graphics.we_path = ft_strdup(line);
+}
+
+void    assign_ea_texture(t_bible *master, char *line)
+{
+    line = skip_whitespace(line);
+    master->graphics.ea_path = ft_strdup(line);
+}
+
+void    assign_so_texture(t_bible *master, char *line)
+{
+    line = skip_whitespace(line);
+    master->graphics.so_path = ft_strdup(line);
+}
+
+void    assign_no_texture(t_bible *master, char *line)
+{
+    line = skip_whitespace(line);
+    master->graphics.no_path = ft_strdup(line);
+}
+
+void parse_textures(t_bible *master, char *line)
+{
+    if (ft_strncmp(line, "NO", 2) == 0)
+        assign_no_texture(master, line + 2);
+    else if (ft_strncmp(line, "SO", 2) == 0)
+        assign_so_texture(master, line + 2);
+    else if (ft_strncmp(line, "EA", 2) == 0)
+        assign_ea_texture(master, line + 2);
+    else if (ft_strncmp(line, "WE", 2) == 0)
+        assign_we_texture(master, line + 2);
+}

@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_textures                                     :+:      :+:    :+:   */
+/*   helper_functions_00.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/24 14:42:56 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/24 14:43:05 by zkarman          ###   ########.fr       */
+/*   Created: 2026/07/24 21:01:41 by karmanz           #+#    #+#             */
+/*   Updated: 2026/07/24 21:04:48 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char    *skip_whitespace(char *line)
+{
+    while ((line >= 9 && line <= 13) || line == 32)
+        line++;
+    return (line);
+}

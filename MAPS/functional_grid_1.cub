@@ -1,10 +1,10 @@
-N ./textures/n_wall.xpm
-E ./textures/e_wall.xpm
-S ./textures/s_wall.xpm
-W ./textures/w_wall.xpm
+NO ./textures/n_wall.xpm
+EA ./textures/e_wall.xpm
+SO ./textures/s_wall.xpm
+WE ./textures/w_wall.xpm
 
-Floor
-Ceiling
+F 220,100,0
+C 225,30,0
 
 11111111111                      11111111111111111
 10000000001                      10000000000000001
