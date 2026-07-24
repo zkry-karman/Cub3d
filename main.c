@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/07/24 14:29:58 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/07/24 16:41:07 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ int main()
 	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3d");
 	if (!data.mlx_win)
 		return (free(data.mlx), 1);
+	mlx_hook(data.mlx_win, 2, 1L<<0, key_press, &data);
+	mlx_hook(data.mlx_win, 17, 1L<<17, close_window, &data);
 	mlx_loop(data.mlx);
 }
-
+/*
 int main(int ac, char **av)
 {
     t_bible     master;
@@ -36,5 +38,4 @@ int main(int ac, char **av)
         return (1);
     }
     initialize_master(&master);
-	parse_file(&master, av[1]);
-}
+}*/
