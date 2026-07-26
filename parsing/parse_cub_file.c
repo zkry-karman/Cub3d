@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/26 15:30:42 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/26 17:26:32 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int parse_cub_file(t_bible *master, char *file_path)
         printf("Error\nCannont open file\n");
         return (0);
     }
-    read_file(master, fd);
+    if (!read_file(master, fd))
+        parsing_failure(master);
 }

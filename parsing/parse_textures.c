@@ -6,13 +6,11 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:42:56 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/26 15:48:39 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/26 17:27:30 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-//need to check for duplicate textures (ie 2 NO lines)
 
 void    assign_we_texture(t_bible *master, char *line)
 {
