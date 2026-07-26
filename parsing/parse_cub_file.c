@@ -6,13 +6,13 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/24 22:02:15 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/26 15:30:42 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    read_file(t_bible *master, int fd)
+int    read_file(t_bible *master, int fd)
 {
     char    *line;
     char    *curr;
@@ -24,12 +24,15 @@ void    read_file(t_bible *master, int fd)
             || ft_strncmp(curr, "SO", 2) == 0
             || ft_strncmp(curr, "EA", 2) == 0
             || ft_strncmp(curr, "WE", 2) == 0)
-                parse_textures(master, curr);
+                if (!parse_textures(master, curr))
+                    return (0);
         else if (ft_strncmp(curr, "F", 1) == 0
             || ft_strncmp(curr, "C", 1) == 0)
-                parse_rgb(master, curr);
+                if (!parse_rgb(master, curr))
+                    return (0);
         free(line);
     }
+    return (1);
 }
 
 int check_extension(char *file_path)
