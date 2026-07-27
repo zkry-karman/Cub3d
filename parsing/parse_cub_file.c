@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/26 17:26:32 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/27 20:34:18 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,22 @@ int    read_file(t_bible *master, int fd)
     while ((line = get_next_line(fd)))
     {
         curr = skip_whitespace(line);
-        if (ft_strncmp(curr, "NO", 2) == 0
-            || ft_strncmp(curr, "SO", 2) == 0
-            || ft_strncmp(curr, "EA", 2) == 0
-            || ft_strncmp(curr, "WE", 2) == 0)
-                if (!parse_textures(master, curr))
-                    return (0);
-        else if (ft_strncmp(curr, "F", 1) == 0
-            || ft_strncmp(curr, "C", 1) == 0)
-                if (!parse_rgb(master, curr))
-                    return (0);
+        if (ft_strncmp(curr, "NO", 2) == 0 || ft_strncmp(curr, "SO", 2) == 0 || ft_strncmp(curr, "EA", 2) == 0 || ft_strncmp(curr, "WE", 2) == 0)
+        {
+            if (!parse_textures(master, curr))
+                return (free(line), 0);
+        }
+        else if (ft_strncmp(curr, "F", 1) == 0 || ft_strncmp(curr, "C", 1) == 0)
+        {
+            if (!parse_rgb(master, curr))
+                return (free(line), 0);
+        }
+        else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0 || ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0 || ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
+        {
+            if (!parse_map(master, line, fd));
+                return (0);
+            return (1);
+        }
         free(line);
     }
     return (1);

@@ -3,12 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   free_memory                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:30:12 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/24 16:34:50 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/07/26 17:25:01 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void    free_double_pointer(char **arr)
+{
+    int i;
+
+    i = 0;
+    while (arr[i])
+    {
+        free(arr[i]);
+        i++;
+    }
+    free(arr);
+}
