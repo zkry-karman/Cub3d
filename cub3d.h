@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/24 20:16:09 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/27 21:05:41 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # define WIDTH 1080
 # define HEIGHT 720
 # define ESC 65307
+
+typedef struct s_line
+{
+    char    *line;
+    struct s_line *next;
+}   t_line;
 
 typedef struct s_map
 {
