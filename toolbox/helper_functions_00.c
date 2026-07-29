@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:01:41 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/24 21:04:48 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/29 13:45:53 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,23 @@ void    ft_add_new_node(t_line **list, char *line)
         lastnode->next = newnode;
     newnode->line = line;
     newnode->next = NULL;
+}
+
+char    **duplicate_map(char **og_map, int height)
+{
+    char    **dup;
+    int     y;
+
+    dup = malloc(sizeof(char *) * (height + 1));
+    if (!dup)
+        return (NULL);
+    
+    y = 0;
+    while (y < height)
+    {
+        dup[y] = ft_strdup(og_map[y]);
+        y++;
+    }
+    dup[y] = '\0';
+    return (dup);
 }

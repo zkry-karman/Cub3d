@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/27 21:05:41 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/29 12:39:54 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_player
     double	x;
 	double	y;
 	char	dir;
+    int     player_count;
 }   t_player;
 
 typedef struct  s_bible
