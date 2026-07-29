@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:15:11 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/23 21:44:07 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/07/29 12:40:21 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void    initialize_master(t_bible *master)
     master->graphics.ceiling_color = -1;
     master->player.x = -1.0;
     master->player.y = -1.0;
+    master->player.player_count = 0;
 }
