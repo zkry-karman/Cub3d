@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/07/24 19:20:37 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/02 19:09:03 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,32 @@
 
 int main()
 {
-	t_bible data;
+	t_bible data = {0};
 	
 	init_mock_data(&data);
+	if (!init_player_direction(&data.player))
+		return (1);
+	printf("Spawn direction: %c\n", data.player.dir);
+	printf("Direction vector: (%.1f, %.1f)\n",
+	data.player.dir_x, data.player.dir_y);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
 	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3d");
 	if (!data.mlx_win)
 		return (free(data.mlx), 1);
+	data.img.img_ptr = mlx_new_image(data.mlx, WIDTH, HEIGHT);
+	if (!data.img.img_ptr)
+		return (free(data.mlx), free(data.mlx_win), 1);
+	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
+	render_background(&data);
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
 	mlx_hook(data.mlx_win, 2, 1L<<0, (void *)key_press, &data);
 	mlx_hook(data.mlx_win, 17, 1L<<17, (void *)close_window, &data);
 	mlx_loop(data.mlx);
+	return (0);
 }
-
+/*
 int main(int ac, char **av)
 {
     t_bible     master;
@@ -39,4 +51,4 @@ int main(int ac, char **av)
     }
     initialize_master(&master);
 	parse_cub_file(&master, av[1]);
-}
+}*/
