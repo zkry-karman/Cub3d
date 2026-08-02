@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/29 12:39:54 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/02 19:11:14 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 # include <stdlib.h>
 # include <string.h>
 # include <stddef.h>
+# include <stdio.h>
+# include <stdbool.h>
+# include <math.h>
 # include "mlx/mlx.h"
+# include "libft/libft.h"
 
 # define WIDTH 1080
 # define HEIGHT 720
 # define ESC 65307
+
+# define PLANE_LENGTH 0.66
 
 typedef struct s_line
 {
@@ -48,7 +54,7 @@ typedef struct s_graphic
 //for raycasting
 typedef struct s_img
 {
-    void    *img;
+    void    *img_ptr;
     char    *addr;
     int     bits_per_pixel;
     int     line_length;
@@ -59,7 +65,11 @@ typedef struct s_player
 {
     double	x;
 	double	y;
-	char	dir;
+	double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+	char	dir; //initial spawn orientation
     int     player_count;
 }   t_player;
 
@@ -76,5 +86,10 @@ typedef struct  s_bible
 void init_mock_data(t_bible *data);
 int key_press(int key, t_bible *data);
 int close_window(t_bible *data);
+
+void render_background(t_bible *data);
+void my_mlx_pixel_put(t_img *img, int x, int y, int color);
+
+int init_player_direction(t_player *player);
 
 #endif

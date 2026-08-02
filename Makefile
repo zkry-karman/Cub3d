@@ -7,6 +7,9 @@ RM = rm -f
 SRCS =  main.c \
 		window_management/render_window.c \
 		window_management/hooks.c \
+		raycasting/player_direction.c \
+		raycasting/raycasting.c
+
 OBJS	= $(SRCS:.c=.o)
 
 LIBFT = libft/libft.a
@@ -16,7 +19,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@make bonus -C libft
 	@make -C mlx CC="cc -std=gnu17" 
-	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
