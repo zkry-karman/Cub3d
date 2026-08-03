@@ -8,7 +8,8 @@ SRCS =  main.c \
 		window_management/render_window.c \
 		window_management/hooks.c \
 		raycasting/player_direction.c \
-		raycasting/raycasting.c
+		raycasting/raycasting.c \
+		raycasting/render_frame.c
 
 OBJS	= $(SRCS:.c=.o)
 

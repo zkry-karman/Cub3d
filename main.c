@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/02 19:09:03 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/03 17:43:46 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int main()
 	init_mock_data(&data);
 	if (!init_player_direction(&data.player))
 		return (1);
+	init_camera_plane(&data.player);
 	printf("Spawn direction: %c\n", data.player.dir);
 	printf("Direction vector: (%.1f, %.1f)\n",
 	data.player.dir_x, data.player.dir_y);
@@ -34,6 +35,7 @@ int main()
 	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	render_background(&data);
 	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
+	render_frame(&data);
 	mlx_hook(data.mlx_win, 2, 1L<<0, (void *)key_press, &data);
 	mlx_hook(data.mlx_win, 17, 1L<<17, (void *)close_window, &data);
 	mlx_loop(data.mlx);

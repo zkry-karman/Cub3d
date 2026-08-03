@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/02 19:11:14 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/03 19:03:56 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
-# define WIDTH 1080
+# define WIDTH 200
 # define HEIGHT 720
 # define ESC 65307
 
@@ -61,6 +61,18 @@ typedef struct s_img
     int     endian;
 }   t_img;
 
+typedef struct s_ray
+{
+	double camera_x;
+	double dir_x;
+	double dir_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+}	t_ray;
+
+
 typedef struct s_player
 {
     double	x;
@@ -91,5 +103,8 @@ void render_background(t_bible *data);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 int init_player_direction(t_player *player);
+void init_camera_plane(t_player *player);
+void render_frame(t_bible *data);
+void init_ray_for_column(t_player *player, t_ray *ray, int x);
 
 #endif
