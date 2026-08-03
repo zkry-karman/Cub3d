@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 18:51:23 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/02 20:55:39 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/03 20:05:57 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int init_player_direction(t_player *player)
 	else if (player->dir == 'S')
 		player->dir_y = 1.0;
 	else if (player->dir == 'W')
-		player->dir_y = -1.0;
+		player->dir_x = -1.0;
 	else if (player->dir == 'E')
-		player->dir_y = 1.0;
+		player->dir_x = 1.0;
 	else
 		return (0);
 	return (1);
