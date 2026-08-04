@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/29 12:51:37 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/04 13:50:02 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int    read_file(t_bible *master, int fd)
         }
         free(line);
     }
+    if (!check_xpm_files(master))
+        return (0);
     return (1);
 }
 
@@ -75,4 +77,5 @@ int parse_cub_file(t_bible *master, char *file_path)
     }
     if (!read_file(master, fd))
         parsing_failure(master);
+    close(fd);
 }

@@ -6,11 +6,28 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/29 13:47:23 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/04 13:22:34 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int flood_fill(t_bible *master, char **map_copy, int y, int x)
+{
+    if (x < 0 || x >= master->map.width || y < 0 || y >= master->map.height)
+        return (0);
+    if (map_copy[y][x] == ' ')
+        return (0);
+    if (grid[y][x] == '1' || grid[y][x] == '#')
+        return (1);
+    grid[y][x] == '#';
+    if (!flood_fill(master, map_copy, y + 1, x)
+        || !flood_fill(master, map_copy, y - 1, x)
+        !! !flood_fill(master, map_copy, y, x + 1)
+        !! !flood_fill(master, map_copy, y, x - 1))
+        return (0);
+    return (1);
+}
 
 int check_characters(t_bible *master)
 {
@@ -91,6 +108,8 @@ int parse_map(t_bible *master, char *head, int fd)
     char    *line;
     char    **map_copy;
 
+    if (!check_other_configs(master))
+        return (0);
     lines = ft_add_line_node(&lines, head);
     master->map.height = 1;
     master->map.width = ft_strlen_cub3d(head);
@@ -110,7 +129,7 @@ int parse_map(t_bible *master, char *head, int fd)
     map_copy = duplicate_map(master->map.grid, master->map.height);
     if (!map_copy)
         return (0);
-    if (!flood_fill(map_copy, (int)master->player.y, (int)master->player.x))
+    if (!flood_fill(master, map_copy, (int)master->player.y, (int)master->player.x))
     {
         printf("Error\nMap is not fully enclosed\n");
         free_double_pointer(map_copy);
