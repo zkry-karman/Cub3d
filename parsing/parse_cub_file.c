@@ -6,7 +6,7 @@
 /*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/04 13:50:02 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/04 14:36:51 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,13 @@ int parse_cub_file(t_bible *master, char *file_path)
     int fd;
 
     if (!check_extension(file_path))
-    {
-        printf("Error\nMap file must have .cub extension\n");
-        return (0);
-    }
+        return(printf("Error\nMap file must have .cub extension\n"), 0);
     fd = open(file_path, O_RDONLY);
     if (fd < 0)
-    {
-        printf("Error\nCannont open file\n");
-        return (0);
-    }
+        return(printf("Error\nCannont open file\n"), 0);
     if (!read_file(master, fd))
+    //need to clean up memory here
         parsing_failure(master);
     close(fd);
+    return (1);
 }

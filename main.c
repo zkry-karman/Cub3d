@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/03 17:43:46 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/04 14:35:56 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ int main(int ac, char **av)
         return (1);
     }
     initialize_master(&master);
-	parse_cub_file(&master, av[1]);
+	if (!parse_cub_file(&master, av[1]))
+	{
+		parsing_failure(master);
+		return (1);
+	}
 }*/
