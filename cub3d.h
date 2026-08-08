@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/03 19:03:56 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/08 20:41:19 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,17 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	double camera_x;
-	double dir_x;
-	double dir_y;
+	double 	camera_x;
+	double 	dir_x;
+	double 	dir_y;
 	int		map_x;
 	int		map_y;
 	int		step_x;
 	int		step_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 }	t_ray;
 
 
@@ -106,5 +110,6 @@ int init_player_direction(t_player *player);
 void init_camera_plane(t_player *player);
 void render_frame(t_bible *data);
 void init_ray_for_column(t_player *player, t_ray *ray, int x);
+void init_delta_dist(t_ray *ray);
 
 #endif
