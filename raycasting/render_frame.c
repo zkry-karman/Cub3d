@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:16:25 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/03 19:11:55 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/08 21:28:38 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,31 @@ void init_dda_position(t_player *player, t_ray *ray)
 		ray->step_y = 0;
 }
 
+void init_delta_dist(t_ray *ray)
+{
+	if (ray->dir_x == 0)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = fabs(1.0 / ray->dir_x);
+	if (ray->dir_y == 0)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = fabs(1.0 / ray->dir_y);
+}
+
+void init_side_dist(t_player *player, t_ray *ray)
+{
+	if (ray->step_x > 0)
+		ray->side_dist_x = (ray->map_x + 1.0 - player->x) * ray->delta_dist_x;
+	else if (ray->step_x < 0)
+		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
+	else
+		ray->side_dist_x = 
+	if (ray->step_y > 0)
+		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
+	else if ()
+}
+
 void render_frame(t_bible *data)
 {
 	t_ray ray;
@@ -48,6 +73,7 @@ void render_frame(t_bible *data)
 	{
 		init_ray_for_column(&data->player, &ray, x);
 		init_dda_position(&data->player, &ray);
+		init_delta_dist(&ray);
 		printf("column: %d\n", x);
 		printf("ray direction: (%f, %f)\n",
 			ray.dir_x, ray.dir_y);
@@ -55,6 +81,8 @@ void render_frame(t_bible *data)
 			ray.map_x, ray.map_y);
 		printf("step: (%d, %d)\n",
 			ray.step_x, ray.step_y);
+		printf("delta: (%f, %f)\n",
+			ray.delta_dist_x, ray.delta_dist_y);
 		x++;
 	}
 }
