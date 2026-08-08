@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/04 13:22:34 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/08 16:45:08 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void store_player_pos(t_bible *master, int x, int y, char direction)
     master->player.x = x + 0.5;
     master->player.y = y + 0.5;
     master->player.dir = direction;
+    master->map.grid[y][x] = '0';
+    master->player.player_count++;
 }
 
 int pad_copy_map(t_bible *master, t_line *line_list)
@@ -80,11 +82,7 @@ int pad_copy_map(t_bible *master, t_line *line_list)
         while (x < line_len)
         {
             if (curr->line[x] == 'N' || curr->line[x] == 'S' || curr->line[x] == 'E' || curr->line[x] == 'W')
-            {
                 store_player_pos(master, x, y, curr->line[x]);
-                master->map.grid[y][x] = '0';
-                master->player.player_count++;
-            }
             else
                 master->map.grid[y][x] = curr->line[x];
             x++;
@@ -108,11 +106,7 @@ int parse_map(t_bible *master, char *head, int fd)
     char    *line;
     char    **map_copy;
 
-    if (!check_other_configs(master))
-        return (0);
-    lines = ft_add_line_node(&lines, head);
-    master->map.height = 1;
-    master->map.width = ft_strlen_cub3d(head);
+    lines = initialize_map_dimensions(master, head);
     while ((line = get_next_line(fd)))
     {
         if (master->map.width == 0 || master->map.width < ft_strlen_cub3d(line))
@@ -130,12 +124,6 @@ int parse_map(t_bible *master, char *head, int fd)
     if (!map_copy)
         return (0);
     if (!flood_fill(master, map_copy, (int)master->player.y, (int)master->player.x))
-    {
-        printf("Error\nMap is not fully enclosed\n");
-        free_double_pointer(map_copy);
-        return (0);
-    }
-    free_double_pointer(map_copy);
-    return (1);
-    
+        return (printf("Error\nMap is not fully enclosed\n"), free_double_pointer(map_copy), 0);
+    return (free_double_pointer(map_copy), 1);    
 }
