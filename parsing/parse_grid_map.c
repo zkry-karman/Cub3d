@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/08 16:45:08 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/08 20:08:34 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int pad_copy_map(t_bible *master, t_line *line_list)
 {
     int x;
     int y;
-    int line_len;
     t_line  *curr;
 
     master->map.grid = malloc(sizeof(char *) * (master->map.height + 1));
@@ -77,21 +76,10 @@ int pad_copy_map(t_bible *master, t_line *line_list)
         master->map.grid[y] = malloc(sizeof(char) * (master->map.width + 1));
         if (!master->map.grid[y])
             return (0);
-        line_len = ft_strlen(curr->line);
         x = 0;
-        while (x < line_len)
-        {
-            if (curr->line[x] == 'N' || curr->line[x] == 'S' || curr->line[x] == 'E' || curr->line[x] == 'W')
-                store_player_pos(master, x, y, curr->line[x]);
-            else
-                master->map.grid[y][x] = curr->line[x];
-            x++;
-        }
-        while (x < master->map.width)
-        {
-            master->map.grid[y][x] = ' ';
-            x++;
-        }
+        //i think i need to update x for both of these functions.
+        x = scan_copy_line(master, curr, x, y);
+        x += pad_empty_spaces(master, x, y);
         master->map.grid[y][x] = '\0';
         curr = curr->next;
         y++;
