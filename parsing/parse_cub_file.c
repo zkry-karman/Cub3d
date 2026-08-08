@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/04 14:36:51 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/08 21:04:34 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,12 @@ int    read_file(t_bible *master, int fd)
         }
         else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0 || ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0 || ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
         {
-            if (!parse_map(master, line, fd))
+            if (!check_other_configs(master) || !parse_map(master, line, fd))
                 return (0);
             return (1);
         }
         free(line);
     }
-    if (!check_xpm_files(master))
-        return (0);
     return (1);
 }
 
@@ -69,9 +67,13 @@ int parse_cub_file(t_bible *master, char *file_path)
     fd = open(file_path, O_RDONLY);
     if (fd < 0)
         return(printf("Error\nCannont open file\n"), 0);
-    if (!read_file(master, fd))
-    //need to clean up memory here
+    if (!read_file(master, fd) || !check_xpm_files(master))
+    {
+        // need to implement this function still
+        close(fd); 
         parsing_failure(master);
+        return (0);
+    }
     close(fd);
     return (1);
 }
