@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/08 20:41:19 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/10 19:30:24 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_ray
 	double	delta_dist_y;
 	double	side_dist_x;
 	double	side_dist_y;
+	int		wall_flag;
+	int		wall_type;
 }	t_ray;
 
 
@@ -91,7 +93,7 @@ typedef struct s_player
 
 typedef struct  s_bible
 {
-    t_map       map;
+    t_map       *map;
     t_player    player;
 	t_graphic	graphics;
 	t_img		img;
@@ -106,10 +108,15 @@ int close_window(t_bible *data);
 void render_background(t_bible *data);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-int init_player_direction(t_player *player);
-void init_camera_plane(t_player *player);
-void render_frame(t_bible *data);
-void init_ray_for_column(t_player *player, t_ray *ray, int x);
-void init_delta_dist(t_ray *ray);
+int 	init_player_direction(t_player *player);
+void 	init_camera_plane(t_player *player);
+
+void 	render_rays(t_bible *data);
+void 	init_ray_for_column(t_player *player, t_ray *ray, int x);
+void 	init_delta_dist(t_ray *ray);
+void	init_dda_position(t_player *player, t_ray *ray);
+void	init_side_dist(t_player *player, t_ray *ray);
+
+void	run_dda(t_ray *ray, char **map);
 
 #endif
