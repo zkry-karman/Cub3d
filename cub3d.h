@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/08 20:41:19 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/12 14:56:51 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIDTH 200
 # define HEIGHT 720
 # define ESC 65307
+# define MINI_SCALE 40
 
 # define PLANE_LENGTH 0.66
 
@@ -74,6 +75,11 @@ typedef struct s_ray
 	double	delta_dist_y;
 	double	side_dist_x;
 	double	side_dist_y;
+	double	wall_dist;
+	double	hit_x;
+	double	hit_y;
+	int		wall_flag;
+	int		wall_type;
 }	t_ray;
 
 
@@ -106,10 +112,15 @@ int close_window(t_bible *data);
 void render_background(t_bible *data);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-int init_player_direction(t_player *player);
-void init_camera_plane(t_player *player);
-void render_frame(t_bible *data);
-void init_ray_for_column(t_player *player, t_ray *ray, int x);
-void init_delta_dist(t_ray *ray);
+int 	init_player_direction(t_player *player);
+void 	init_camera_plane(t_player *player);
+
+void 	render_rays(t_bible *data);
+void 	init_ray_for_column(t_player *player, t_ray *ray, int x);
+void 	init_delta_dist(t_ray *ray);
+void	init_dda_position(t_player *player, t_ray *ray);
+void	init_side_dist(t_player *player, t_ray *ray);
+
+void	run_dda(t_ray *ray, char **map);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_frame.c                                     :+:      :+:    :+:   */
+/*   render_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:16:25 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/08 21:28:38 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/12 14:16:54 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,16 @@ void init_side_dist(t_player *player, t_ray *ray)
 	else if (ray->step_x < 0)
 		ray->side_dist_x = (player->x - ray->map_x) * ray->delta_dist_x;
 	else
-		ray->side_dist_x = 
+		ray->side_dist_x = 1e30;
 	if (ray->step_y > 0)
 		ray->side_dist_y = (ray->map_y + 1.0 - player->y) * ray->delta_dist_y;
-	else if ()
+	else if (ray->step_y < 0)
+		ray->side_dist_y = (player->y - ray->map_y) * ray->delta_dist_y;
+	else
+		ray->side_dist_y = 1e30;
 }
 
-void render_frame(t_bible *data)
+void render_rays(t_bible *data)
 {
 	t_ray ray;
 	int		x;
@@ -74,15 +77,19 @@ void render_frame(t_bible *data)
 		init_ray_for_column(&data->player, &ray, x);
 		init_dda_position(&data->player, &ray);
 		init_delta_dist(&ray);
-		printf("column: %d\n", x);
-		printf("ray direction: (%f, %f)\n",
-			ray.dir_x, ray.dir_y);
-		printf("map cell: (%d, %d)\n",
-			ray.map_x, ray.map_y);
-		printf("step: (%d, %d)\n",
-			ray.step_x, ray.step_y);
+		init_side_dist(&data->player, &ray);
+		
+		printf("\n--- COLUMN %d ---\n", x);
+		printf("START cell: (%d, %d)\n", ray.map_x, ray.map_y);
+		printf("side: (%f, %f)\n",
+			ray.side_dist_x, ray.side_dist_y);
 		printf("delta: (%f, %f)\n",
 			ray.delta_dist_x, ray.delta_dist_y);
+
+		run_dda(&ray, data->map.grid);
+
+		printf("WALL cell: (%d, %d)\n",
+			ray.map_x, ray.map_y);
 		x++;
 	}
 }
