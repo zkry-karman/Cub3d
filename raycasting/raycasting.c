@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 16:16:13 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/10 20:18:08 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/12 14:51:04 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ void run_dda(t_ray *ray, char **map)
 			ray->wall_type = 1;
 		}
 		if (map[ray->map_y][ray->map_x] == '1')
+		{
+			if (ray->wall_type == 0)
+				ray->wall_dist = ray->side_dist_x - ray->delta_dist_x;
+			else
+				ray->wall_dist = ray->side_dist_y - ray->delta_dist_y;
 			ray->wall_flag = 1;
+		}
 	}
 }

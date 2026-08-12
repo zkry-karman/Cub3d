@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/10 19:30:24 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/12 14:56:51 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIDTH 200
 # define HEIGHT 720
 # define ESC 65307
+# define MINI_SCALE 40
 
 # define PLANE_LENGTH 0.66
 
@@ -74,6 +75,9 @@ typedef struct s_ray
 	double	delta_dist_y;
 	double	side_dist_x;
 	double	side_dist_y;
+	double	wall_dist;
+	double	hit_x;
+	double	hit_y;
 	int		wall_flag;
 	int		wall_type;
 }	t_ray;
@@ -93,7 +97,7 @@ typedef struct s_player
 
 typedef struct  s_bible
 {
-    t_map       *map;
+    t_map       map;
     t_player    player;
 	t_graphic	graphics;
 	t_img		img;
