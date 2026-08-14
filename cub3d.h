@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/12 14:56:51 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/14 19:09:15 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 
-# define WIDTH 200
+# define WIDTH 1080
 # define HEIGHT 720
 # define ESC 65307
-# define MINI_SCALE 40
 
 # define PLANE_LENGTH 0.66
 
@@ -121,6 +120,7 @@ void 	init_delta_dist(t_ray *ray);
 void	init_dda_position(t_player *player, t_ray *ray);
 void	init_side_dist(t_player *player, t_ray *ray);
 
-void	run_dda(t_ray *ray, char **map);
+void run_dda(t_ray *ray, char **map);
+void draw_line(t_ray *ray, t_bible *data, int x);
 
 #endif

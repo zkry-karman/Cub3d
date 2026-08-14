@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:16:25 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/12 14:16:54 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/14 19:28:17 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,8 @@ void render_rays(t_bible *data)
 		init_dda_position(&data->player, &ray);
 		init_delta_dist(&ray);
 		init_side_dist(&data->player, &ray);
-		
-		printf("\n--- COLUMN %d ---\n", x);
-		printf("START cell: (%d, %d)\n", ray.map_x, ray.map_y);
-		printf("side: (%f, %f)\n",
-			ray.side_dist_x, ray.side_dist_y);
-		printf("delta: (%f, %f)\n",
-			ray.delta_dist_x, ray.delta_dist_y);
-
 		run_dda(&ray, data->map.grid);
-
-		printf("WALL cell: (%d, %d)\n",
-			ray.map_x, ray.map_y);
+		draw_line(&ray, data, x);
 		x++;
 	}
 }

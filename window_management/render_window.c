@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:50:30 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/02 17:03:13 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/14 19:36:25 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void init_mock_data(t_bible *data)
     data->map.grid[3] = ft_strdup("10001");
     data->map.grid[4] = ft_strdup("11111");
 
-	data->player.x = 2.5;
-    data->player.y = 2.5;
+	data->player.x = 3.5;
+    data->player.y = 3.5;
     data->player.dir = 'N';
 
 	data->graphics.ceiling_color = 0x00ADD8E6;
