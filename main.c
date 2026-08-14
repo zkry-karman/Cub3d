@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/10 18:59:17 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/14 19:29:08 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int main()
 		return (free(data.mlx), free(data.mlx_win), 1);
 	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	render_background(&data);
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
 	render_rays(&data);
+	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
 	mlx_hook(data.mlx_win, 2, 1L<<0, (void *)key_press, &data);
 	mlx_hook(data.mlx_win, 17, 1L<<17, (void *)close_window, &data);
 	mlx_loop(data.mlx);
