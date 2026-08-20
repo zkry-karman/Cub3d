@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/14 19:09:15 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/15 17:38:54 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ typedef struct s_ray
 	double	side_dist_x;
 	double	side_dist_y;
 	double	wall_dist;
-	double	hit_x;
-	double	hit_y;
+	double	wall_hit;
 	int		wall_flag;
 	int		wall_type;
 }	t_ray;

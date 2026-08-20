@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 16:16:13 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/14 19:33:04 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/15 18:17:02 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,12 @@ void draw_line(t_ray *ray, t_bible *data, int x)
 			my_mlx_pixel_put(&data->img, x, y, 0x008000);
 		y++;
 	}
+}
+
+void wall_hit(t_ray *ray, t_bible *data)
+{
+	if (ray->wall_type == 0)
+		ray->wall_hit = data->player.y + ray->wall_dist * ray->dir_y;
+	else
+		ray->wall_hit = data->player.x + ray->wall_dist * ray->dir_x;
 }
