@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:16:25 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/14 19:28:17 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/20 17:36:12 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void render_rays(t_bible *data)
 		init_delta_dist(&ray);
 		init_side_dist(&data->player, &ray);
 		run_dda(&ray, data->map.grid);
+		wall_hit(&ray, data);
 		draw_line(&ray, data, x);
 		x++;
 	}

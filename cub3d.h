@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/15 17:38:54 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/20 21:49:45 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define ESC 65307
 
 # define PLANE_LENGTH 0.66
+# define TEX_WIDTH 64
 
 typedef struct s_line
 {
@@ -41,16 +42,6 @@ typedef struct s_map
     int     height;
 }   t_map;
 
-typedef struct s_graphic
-{
-    char    *no_path;
-    char    *ea_path;
-    char    *so_path;
-    char    *we_path;
-    int     floor_color;
-	int     ceiling_color;
-}   t_graphic;
-
 //for raycasting
 typedef struct s_img
 {
@@ -59,7 +50,20 @@ typedef struct s_img
     int     bits_per_pixel;
     int     line_length;
     int     endian;
+	int		width;
+	int		height;
 }   t_img;
+
+typedef struct s_graphic
+{
+    char    *no_path;
+    char    *ea_path;
+    char    *so_path;
+    char    *we_path;
+    int     floor_color;
+	int     ceiling_color;
+	t_img	wall_tex;
+}   t_graphic;
 
 typedef struct s_ray
 {
@@ -76,6 +80,7 @@ typedef struct s_ray
 	double	side_dist_y;
 	double	wall_dist;
 	double	wall_hit;
+	int		tex_x;
 	int		wall_flag;
 	int		wall_type;
 }	t_ray;
@@ -121,5 +126,9 @@ void	init_side_dist(t_player *player, t_ray *ray);
 
 void run_dda(t_ray *ray, char **map);
 void draw_line(t_ray *ray, t_bible *data, int x);
+void	wall_hit(t_ray *ray, t_bible *data);
+
+int		load_texture(t_bible *data, t_img *tex, char *path);
+unsigned int get_texture_pixel(t_img *tex, int x, int y);
 
 #endif

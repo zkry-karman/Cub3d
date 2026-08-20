@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:50:30 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/14 19:36:25 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/20 19:35:59 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,4 @@ void my_mlx_pixel_put(t_img *img, int x, int y, int color)
     
     *(unsigned int *)dst = color;
 }
+
