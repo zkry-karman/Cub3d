@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 16:16:13 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/15 18:17:02 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/20 21:54:22 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ void draw_line(t_ray *ray, t_bible *data, int x)
 	int line_height;
 	int draw_start;
 	int draw_end;
+	int wall_top;
+	int tex_y; // 0 - 63 if the tile size is 64, but essentially this is just 100% scale
+	int color;
 	int y;
 
 	line_height = HEIGHT / ray->wall_dist;
 	draw_start = -line_height / 2 + HEIGHT / 2;
 	draw_end = line_height / 2 + HEIGHT / 2;
+	wall_top = draw_start;
 	if (draw_start < 0)
 		draw_start = 0;
 	if (draw_end >= HEIGHT)
@@ -57,10 +61,11 @@ void draw_line(t_ray *ray, t_bible *data, int x)
 	y = draw_start;
 	while (y <= draw_end)
 	{
-		if (ray->wall_type == 0)
-			my_mlx_pixel_put(&data->img, x, y, 0xFF0000);
-		else
-			my_mlx_pixel_put(&data->img, x, y, 0x008000);
+		tex_y = (int)(((double)(y - wall_top) / line_height) * data->graphics.wall_tex.height);
+		if (tex_y >= data->graphics.wall_tex.height)
+			tex_y = data->graphics.wall_tex.height - 1;
+		color = get_texture_pixel(&data->graphics.wall_tex, ray->tex_x, tex_y);
+		my_mlx_pixel_put(&data->img, x, y, color);
 		y++;
 	}
 }
@@ -71,4 +76,6 @@ void wall_hit(t_ray *ray, t_bible *data)
 		ray->wall_hit = data->player.y + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_hit = data->player.x + ray->wall_dist * ray->dir_x;
+	ray->wall_hit -= floor(ray->wall_hit);
+	ray->tex_x = (int)(ray->wall_hit * data->graphics.wall_tex.width);
 }

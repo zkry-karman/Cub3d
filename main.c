@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/14 19:29:08 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/20 22:06:16 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int main()
 	if (!init_player_direction(&data.player))
 		return (1);
 	init_camera_plane(&data.player);
-	printf("Spawn direction: %c\n", data.player.dir);
-	printf("Direction vector: (%.1f, %.1f)\n",
 	data.player.dir_x, data.player.dir_y);
 	data.mlx = mlx_init();
 	if (!data.mlx)
+		return (1);
+	if (!load_texture(&data, &data.graphics.wall_tex, "./textures/wall2.xpm"))
 		return (1);
 	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3d");
 	if (!data.mlx_win)
