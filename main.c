@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/20 22:06:16 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/22 16:22:19 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main()
 	if (!init_player_direction(&data.player))
 		return (1);
 	init_camera_plane(&data.player);
-	data.player.dir_x, data.player.dir_y);
 	data.mlx = mlx_init();
 	if (!data.mlx)
 		return (1);
@@ -33,11 +32,10 @@ int main()
 	if (!data.img.img_ptr)
 		return (free(data.mlx), free(data.mlx_win), 1);
 	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
-	render_background(&data);
-	render_rays(&data);
-	mlx_put_image_to_window(data.mlx, data.mlx_win, data.img.img_ptr, 0, 0);
+	render_frame(&data);
 	mlx_hook(data.mlx_win, 2, 1L<<0, (void *)key_press, &data);
 	mlx_hook(data.mlx_win, 17, 1L<<17, (void *)close_window, &data);
+	mlx_key_hook(data.mlx_win, move_hook, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

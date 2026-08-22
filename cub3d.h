@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/20 21:49:45 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/22 16:32:05 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,14 @@
 # define WIDTH 1080
 # define HEIGHT 720
 # define ESC 65307
+# define KEY_W   119
+# define KEY_A   97
+# define KEY_S   115
+# define KEY_D   100
 
 # define PLANE_LENGTH 0.66
 # define TEX_WIDTH 64
+# define MOVE_SPEED 0.1
 
 typedef struct s_line
 {
@@ -114,6 +119,7 @@ int close_window(t_bible *data);
 
 void render_background(t_bible *data);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	render_frame(t_bible *data);
 
 int 	init_player_direction(t_player *player);
 void 	init_camera_plane(t_player *player);
@@ -130,5 +136,8 @@ void	wall_hit(t_ray *ray, t_bible *data);
 
 int		load_texture(t_bible *data, t_img *tex, char *path);
 unsigned int get_texture_pixel(t_img *tex, int x, int y);
+
+int move_hook(int keycode, t_bible *data);
+void move_player(t_player *player, t_map *map, float amount);
 
 #endif
