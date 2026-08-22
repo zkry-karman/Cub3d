@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 16:16:13 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/20 21:54:22 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/22 14:25:52 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void draw_line(t_ray *ray, t_bible *data, int x)
 	int draw_start;
 	int draw_end;
 	int wall_top;
-	int tex_y; // 0 - 63 if the tile size is 64, but essentially this is just 100% scale
+	int tex_y; // vertical pixel index inside the texture: 0 to texture_height - 1
 	int color;
 	int y;
 

@@ -1,16 +1,17 @@
 NAME = cub3d
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I. -I./mlx
+CFLAGS = -Wall -Wextra -Werror -std=gnu17 -I. -I./mlx
 MLXFLAGS = -L./mlx -lmlx -lXext -lX11 -lm -lz
 RM = rm -f
 
 SRCS =  main.c \
 		window_management/render_window.c \
-		window_management/hooks.c \
+		window_management/hooks_closing.c \
 		raycasting/player_direction.c \
 		raycasting/raycasting.c \
 		raycasting/render_rays.c \
-		raycasting/texture_rendering.c
+		raycasting/texture_rendering.c \
+		player_movement/basic_movement.c 
 
 OBJS	= $(SRCS:.c=.o)
 
