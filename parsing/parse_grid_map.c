@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/08 20:08:34 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/22 16:23:52 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int flood_fill(t_bible *master, char **map_copy, int y, int x)
         return (0);
     if (map_copy[y][x] == ' ')
         return (0);
-    if (grid[y][x] == '1' || grid[y][x] == '#')
+    if (map_copy[y][x] == '1' || map_copy[y][x] == '#')
         return (1);
-    grid[y][x] == '#';
+    map_copy[y][x] = '#';
     if (!flood_fill(master, map_copy, y + 1, x)
         || !flood_fill(master, map_copy, y - 1, x)
-        !! !flood_fill(master, map_copy, y, x + 1)
-        !! !flood_fill(master, map_copy, y, x - 1))
+        || !flood_fill(master, map_copy, y, x + 1)
+        || !flood_fill(master, map_copy, y, x - 1))
         return (0);
     return (1);
 }
@@ -77,9 +77,8 @@ int pad_copy_map(t_bible *master, t_line *line_list)
         if (!master->map.grid[y])
             return (0);
         x = 0;
-        //i think i need to update x for both of these functions.
         x = scan_copy_line(master, curr, x, y);
-        x += pad_empty_spaces(master, x, y);
+        x = pad_empty_spaces(master, x, y);
         master->map.grid[y][x] = '\0';
         curr = curr->next;
         y++;

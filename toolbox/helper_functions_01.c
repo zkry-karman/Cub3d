@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 13:02:35 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/08 20:08:54 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/22 16:21:56 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ void    check_for_player_pos(t_bible *master, t_line *curr, int x, int y)
 
 }
 
-t_line    *intialize_map_dimensions(t_bible *master, char *head, t_line *lines)
+t_line    *intialize_map_dimensions(t_bible *master, char *head)
 {
     t_line  *lines;
     
-    lines = ft_add_line_node(&lines, head);
+    lines = NULL;
+    lines = ft_add_new_node(&lines, head);
     master->map.height = 1;
     master->map.width = ft_strlen_cub3d(head);
     return (lines);
