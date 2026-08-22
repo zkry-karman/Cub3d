@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions_00.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:01:41 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/29 13:45:53 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/22 15:16:06 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char    *skip_whitespace(char *line)
 {
-    while ((line >= 9 && line <= 13) || line == 32)
+    while ((*line >= 9 && *line <= 13) || *line == 32)
         line++;
     return (line);
 }

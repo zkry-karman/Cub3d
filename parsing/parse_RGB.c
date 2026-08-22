@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_RGB.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/07/26 17:42:48 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/22 15:21:33 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void    assign_floor_rgb(t_bible *master, char **rgb)
     g = ft_atoi(rgb[1]);
     b = ft_atoi(rgb[2]);
     
-    master->graphics.floor_color = color = (r << 16) | (g << 8) | b;
+    master->graphics.floor_color = (r << 16) | (g << 8) | b;
 }
 
 void    assign_ceiling_rgb(t_bible *master, char **rgb)
@@ -73,7 +73,7 @@ void    assign_ceiling_rgb(t_bible *master, char **rgb)
     g = ft_atoi(rgb[1]);
     b = ft_atoi(rgb[2]);
     
-    master->graphics.ceiling_color = color = (r << 16) | (g << 8) | b;
+    master->graphics.ceiling_color = (r << 16) | (g << 8) | b;
 
 }
 
