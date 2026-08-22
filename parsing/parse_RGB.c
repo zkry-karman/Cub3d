@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/22 15:21:33 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/22 16:20:48 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int validate_rgb_values(char **rgb)
     while (rgb[i])
     {
         value = ft_atoi(rgb[i]);
-        if (rgb[i] < 0 || rgb[i] > 255)
+        if (value < 0 || value > 255)
         {
             printf("Error\nInvalide floor or ceiling color\nValues must be between 0 and 255");
             return (0);

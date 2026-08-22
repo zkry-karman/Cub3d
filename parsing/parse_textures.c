@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:42:56 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/08 16:21:07 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/22 16:15:56 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,28 @@
 void    assign_we_texture(t_bible *master, char *line)
 {
     line = skip_whitespace(line);
+    trim_backend(line);
     master->graphics.we_path = ft_strdup(line);
 }
 
 void    assign_ea_texture(t_bible *master, char *line)
 {
     line = skip_whitespace(line);
+    trim_backend(line);
     master->graphics.ea_path = ft_strdup(line);
 }
 
 void    assign_so_texture(t_bible *master, char *line)
 {
     line = skip_whitespace(line);
+    trim_backend(line);
     master->graphics.so_path = ft_strdup(line);
 }
 
 void    assign_no_texture(t_bible *master, char *line)
 {
     line = skip_whitespace(line);
+    trim_backend(line);
     master->graphics.no_path = ft_strdup(line);
 }
 
