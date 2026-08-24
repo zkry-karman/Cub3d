@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/03 16:16:25 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/20 17:36:12 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/24 16:14:02 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void init_side_dist(t_player *player, t_ray *ray)
 void render_rays(t_bible *data)
 {
 	t_ray ray;
+	t_img *tex;
 	int		x;
 	
 	x = 0;
@@ -79,8 +80,9 @@ void render_rays(t_bible *data)
 		init_delta_dist(&ray);
 		init_side_dist(&data->player, &ray);
 		run_dda(&ray, data->map.grid);
-		wall_hit(&ray, data);
-		draw_line(&ray, data, x);
+		tex = get_wall_texture(&ray, &data->graphics);
+		wall_hit(&ray, data, tex);
+		draw_line(&ray, data, x, tex);
 		x++;
 	}
 }

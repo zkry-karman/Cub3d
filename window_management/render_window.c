@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:50:30 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/22 16:48:38 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/24 13:49:42 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void init_mock_data(t_bible *data)
     data->player.y = 3.5;
     data->player.dir = 'N';
 
-	data->graphics.ceiling_color = 0x00ADD8E6;
-	data->graphics.floor_color = 0x00D3D3D3;
+	data->graphics.ceiling_color = 0xD8D2A8;
+	data->graphics.floor_color = 0x8D7F4F;
 }
 
 void render_background(t_bible *data)

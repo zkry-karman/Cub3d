@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 16:16:13 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/22 14:25:52 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/24 16:09:54 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void run_dda(t_ray *ray, char **map)
 	}
 }
 
-void draw_line(t_ray *ray, t_bible *data, int x)
+void draw_line(t_ray *ray, t_bible *data, int x, t_img *tex)
 {
 	int line_height;
 	int draw_start;
@@ -61,21 +61,21 @@ void draw_line(t_ray *ray, t_bible *data, int x)
 	y = draw_start;
 	while (y <= draw_end)
 	{
-		tex_y = (int)(((double)(y - wall_top) / line_height) * data->graphics.wall_tex.height);
-		if (tex_y >= data->graphics.wall_tex.height)
-			tex_y = data->graphics.wall_tex.height - 1;
-		color = get_texture_pixel(&data->graphics.wall_tex, ray->tex_x, tex_y);
+		tex_y = (int)(((double)(y - wall_top) / line_height) * tex->height);
+		if (tex_y >= tex->height)
+			tex_y = tex->height - 1;
+		color = get_texture_pixel(tex, ray->tex_x, tex_y);
 		my_mlx_pixel_put(&data->img, x, y, color);
 		y++;
 	}
 }
 
-void wall_hit(t_ray *ray, t_bible *data)
+void wall_hit(t_ray *ray, t_bible *data, t_img *tex)
 {
 	if (ray->wall_type == 0)
 		ray->wall_hit = data->player.y + ray->wall_dist * ray->dir_y;
 	else
 		ray->wall_hit = data->player.x + ray->wall_dist * ray->dir_x;
 	ray->wall_hit -= floor(ray->wall_hit);
-	ray->tex_x = (int)(ray->wall_hit * data->graphics.wall_tex.width);
+	ray->tex_x = (int)(ray->wall_hit * tex->width);
 }

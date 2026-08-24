@@ -11,7 +11,8 @@ SRCS =  main.c \
 		raycasting/raycasting.c \
 		raycasting/render_rays.c \
 		raycasting/texture_rendering.c \
-		player_movement/basic_movement.c 
+		movement/player_movement.c \
+		
 
 OBJS	= $(SRCS:.c=.o)
 
