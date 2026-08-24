@@ -6,11 +6,24 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/20 18:36:15 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/20 20:00:09 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/24 15:51:49 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_img	*get_wall_texture(t_ray *ray, t_graphic *graphic)
+{
+	if (ray->wall_type == 0)
+	{
+		if (ray->step_x > 0)
+			return (&graphic->we_tex);
+		return (&graphic->ea_tex);
+	}
+	if (ray->step_y > 0)
+		return (&graphic->no_tex);
+	return (&graphic->so_tex);
+}
 
 int	load_texture(t_bible *data, t_img *tex, char *path)
 {

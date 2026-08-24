@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/22 16:32:05 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/24 16:13:26 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,15 @@
 # define KEY_A   97
 # define KEY_S   115
 # define KEY_D   100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 # define PLANE_LENGTH 0.66
+
 # define TEX_WIDTH 64
+
 # define MOVE_SPEED 0.1
+# define ROT_SPEED 0.05
 
 typedef struct s_line
 {
@@ -65,9 +70,12 @@ typedef struct s_graphic
     char    *ea_path;
     char    *so_path;
     char    *we_path;
+	t_img	no_tex;
+	t_img	so_tex;
+	t_img	we_tex;
+	t_img	ea_tex;
     int     floor_color;
 	int     ceiling_color;
-	t_img	wall_tex;
 }   t_graphic;
 
 typedef struct s_ray
@@ -130,14 +138,16 @@ void 	init_delta_dist(t_ray *ray);
 void	init_dda_position(t_player *player, t_ray *ray);
 void	init_side_dist(t_player *player, t_ray *ray);
 
-void run_dda(t_ray *ray, char **map);
-void draw_line(t_ray *ray, t_bible *data, int x);
-void	wall_hit(t_ray *ray, t_bible *data);
+void 	run_dda(t_ray *ray, char **map);
+void	draw_line(t_ray *ray, t_bible *data, int x, t_img *tex);
+void	wall_hit(t_ray *ray, t_bible *data, t_img *tex);
 
 int		load_texture(t_bible *data, t_img *tex, char *path);
 unsigned int get_texture_pixel(t_img *tex, int x, int y);
+t_img	*get_wall_texture(t_ray *ray, t_graphic *graphic);
 
 int move_hook(int keycode, t_bible *data);
-void move_player(t_player *player, t_map *map, float amount);
+void move_player_WS(t_player *player, t_map *map, double amount);
+void move_player_AD(t_player *player, t_map *map, double amount);
 
 #endif
