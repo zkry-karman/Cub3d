@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/25 17:56:20 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 21:02:16 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_map
     char    **grid;
     int     width;
     int     height;
+	int		tile_size;
 }   t_map;
 
 //for raycasting
@@ -149,8 +150,7 @@ int		check_dup_so(t_bible *master);
 int		check_dup_ea(t_bible *master);
 int		check_dup_we(t_bible *master);
 void	store_player_pos(t_bible *master, int x, int y, char direction);
-
-
+void    update_minimap(t_bible *master);
 
 int key_press(int key, t_bible *data);
 int close_window(t_bible *data);

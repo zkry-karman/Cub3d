@@ -26,6 +26,7 @@ SRCS =  main.c \
 		toolbox/helper_functions_02.c \
 		GNL/get_next_line.c \
 		GNL/get_next_line_utils.c \
+		minimap/minimap.c \
 		
 
 OBJS	= $(SRCS:.c=.o)
