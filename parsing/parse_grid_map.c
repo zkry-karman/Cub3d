@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/22 16:23:52 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 15:57:20 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int parse_map(t_bible *master, char *head, int fd)
         free(line);
     }
     if (!pad_copy_map(master, lines))
-        return (ft_lstclear(&lines, free), 0);   
-    free_list(&lines, free);
+        return (ft_lstclear_cub3d(&lines, free), 0);   
+    ft_lstclear_cub3d(&lines, free); // used to be free_list() but didnt have this function ??
     if (!check_characters(master))
         return (0);
     map_copy = duplicate_map(master->map.grid, master->map.height);

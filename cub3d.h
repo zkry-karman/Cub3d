@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/24 16:13:26 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/25 16:14:26 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <math.h>
 # include "mlx/mlx.h"
 # include "libft/libft.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include "GNL/get_next_line.h"
 
 # define WIDTH 1080
 # define HEIGHT 720
@@ -120,6 +123,33 @@ typedef struct  s_bible
     void        *mlx;
     void        *mlx_win;
 }   t_bible;
+
+void    initialize_master(t_bible *master);
+int 	parse_cub_file(t_bible *master, char *file_path);
+void    parsing_failure(t_bible *master);
+int		parse_textures(t_bible *master, char *line);
+int 	parse_rgb(t_bible *master, char *line);
+int		parse_map(t_bible *master, char *head, int fd);
+int		check_xpm_files(t_bible *master);
+int		check_dup_rgb(t_bible *master, char *line);
+char    *skip_whitespace(char *line);
+int		check_other_configs(t_bible *master);
+int		scan_copy_line(t_bible *master, t_line *curr, int x, int y);
+int		pad_empty_spaces(t_bible *master, int x, int y);
+t_line	*initialize_map_dimensions(t_bible *master, char *head);
+int		ft_strlen_cub3d(char *str);
+void	ft_add_new_node(t_line **list, char *line);
+char	**duplicate_map(char **og_map, int height);
+void	free_double_pointer(char **arr);
+void	ft_lstclear_cub3d(t_line **lst, void (*del)(void *));
+char	*trim_backend(char *str);
+int		parse_textures(t_bible *master, char *line);
+int		check_dup_no(t_bible *master);
+int		check_dup_so(t_bible *master);
+int		check_dup_ea(t_bible *master);
+int		check_dup_we(t_bible *master);
+void	store_player_pos(t_bible *master, int x, int y, char direction);
+
 
 void init_mock_data(t_bible *data);
 int key_press(int key, t_bible *data);

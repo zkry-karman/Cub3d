@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_memory                                        :+:      :+:    :+:   */
+/*   free_memory.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:30:12 by karmanz           #+#    #+#             */
-/*   Updated: 2026/07/29 13:41:09 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/25 16:02:42 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void    free_double_pointer(char **arr)
     free(arr);
 }
 
-void	ft_lstdelone(t_line *lst, void (*del)(void *))
+void	ft_lstdelone_cub3d(t_line *lst, void (*del)(void *))
 {
 	if (!lst || !del)
 		return ;
@@ -34,7 +34,7 @@ void	ft_lstdelone(t_line *lst, void (*del)(void *))
 	return ;
 }
 
-void	ft_lstclear(t_line **lst, void (*del)(void *))
+void	ft_lstclear_cub3d(t_line **lst, void (*del)(void *))
 {
 	t_line	*temp;
 
@@ -43,7 +43,7 @@ void	ft_lstclear(t_line **lst, void (*del)(void *))
 	while (*lst)
 	{
 		temp = (*lst)->next;
-		ft_lstdelone(*lst, del);
+		ft_lstdelone_cub3d(*lst, del);
 		*lst = temp;
 	}
 	*lst = NULL;
