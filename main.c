@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/24 15:48:23 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/25 15:13:17 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-/*
+
 int main(int ac, char **av)
 {
 	//t_bible data = {0};
@@ -21,7 +21,7 @@ int main(int ac, char **av)
         return (printf("ERROR\nIncorrect file compilation"), 1);
     initialize_master(&master);
 	if (!parse_cub_file(&master, av[1]))
-		return (parsing_failure(master), 1);
+		return (parsing_failure(&master), 1);
 
 	//Where are you getting the data to store init_player_direction ?
 	if (!init_player_direction(&master.player))
@@ -31,9 +31,6 @@ int main(int ac, char **av)
 	// what if this function fails ?
 	master.mlx = mlx_init();
 	if (!master.mlx)
-	// need to free memory here if failure
-		return (1);
-	if (!load_texture(&master, &master.graphics.wall_tex, "./textures/wall2.xpm"))
 	// need to free memory here if failure
 		return (1);
 	master.mlx_win = mlx_new_window(master.mlx, WIDTH, HEIGHT, "cub3d");
@@ -51,8 +48,9 @@ int main(int ac, char **av)
 	mlx_key_hook(master.mlx_win, move_hook, &master);
 	mlx_loop(master.mlx);
 	return (0);
-}*/
+}
 
+/*
 int main()
 {
 	t_bible data = {0};
@@ -80,3 +78,5 @@ int main()
 	mlx_loop(data.mlx);
 	return (0);
 }
+*/
+

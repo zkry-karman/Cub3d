@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/22 16:20:48 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 15:59:09 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int validate_rgb_values(char **rgb)
     return (1);
 }
 
-char    **validate_rgb(t_bible *master, char *line)
+char    **validate_rgb(char *line)
 {
     char    **rgb;
     
     line = skip_whitespace(line);
-    rgb = ft_split(line, ",");
+    rgb = ft_split(line, ',');
     if (!validate_rgb_values(rgb))
     {
         free_double_pointer(rgb);
@@ -85,7 +85,7 @@ int parse_rgb(t_bible *master, char *line)
     {
         if (!check_dup_rgb(master, line))
             return (0);
-        rgb = validate_rgb(master, line + 1);
+        rgb = validate_rgb(line + 1);
         if (!rgb)
             return (0);
         assign_floor_rgb(master, rgb);
@@ -94,7 +94,7 @@ int parse_rgb(t_bible *master, char *line)
     {
         if (!check_dup_rgb(master, line))
             return (0);
-        rgb = validate_rgb(master, line + 1);
+        rgb = validate_rgb(line + 1);
         if (!rgb)
             return (0);
         assign_ceiling_rgb(master, rgb);

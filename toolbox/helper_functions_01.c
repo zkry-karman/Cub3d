@@ -6,11 +6,20 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 13:02:35 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/22 16:21:56 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 16:13:26 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void    check_for_player_pos(t_bible *master, t_line *curr, int x, int y)
+{
+    if (curr->line[x] == 'N' || curr->line[x] == 'S' || curr->line[x] == 'E' || curr->line[x] == 'W')           
+        store_player_pos(master, x, y, curr->line[x]);
+    else
+        master->map.grid[y][x] = curr->line[x];
+
+}
 
 int    scan_copy_line(t_bible *master, t_line *curr, int x, int y)
 {
@@ -35,21 +44,12 @@ int    pad_empty_spaces(t_bible *master, int x, int y)
     return (x);
 }
 
-void    check_for_player_pos(t_bible *master, t_line *curr, int x, int y)
-{
-    if (curr->line[x] == 'N' || curr->line[x] == 'S' || curr->line[x] == 'E' || curr->line[x] == 'W')           
-        store_player_pos(master, x, y, curr->line[x]);
-    else
-        master->map.grid[y][x] = curr->line[x];
-
-}
-
-t_line    *intialize_map_dimensions(t_bible *master, char *head)
+t_line    *initialize_map_dimensions(t_bible *master, char *head)
 {
     t_line  *lines;
     
     lines = NULL;
-    lines = ft_add_new_node(&lines, head);
+    ft_add_new_node(&lines, head);
     master->map.height = 1;
     master->map.width = ft_strlen_cub3d(head);
     return (lines);
