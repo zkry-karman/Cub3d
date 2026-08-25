@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/08 21:04:34 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 17:43:45 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int    read_file(t_bible *master, int fd)
         }
         else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0 || ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0 || ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
         {
-            if (!check_other_configs(master) || !parse_map(master, line, fd))
+            if (!check_other_configs(master))
+                return (free(line), 0);
+            if (!parse_map(master, line, fd))
                 return (0);
             return (1);
         }

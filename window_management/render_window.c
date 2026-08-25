@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_window.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:50:30 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/24 13:49:42 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/25 17:25:55 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void init_mock_data(t_bible *data)
-{
-	data->map.width = 5;
-	data->map.height = 5;
-	data->map.grid = malloc(sizeof(char *) * 5);
-
-	data->map.grid[0] = ft_strdup("11111");
-    data->map.grid[1] = ft_strdup("10001");
-    data->map.grid[2] = ft_strdup("10001");
-    data->map.grid[3] = ft_strdup("10001");
-    data->map.grid[4] = ft_strdup("11111");
-
-	data->player.x = 3.5;
-    data->player.y = 3.5;
-    data->player.dir = 'N';
-
-	data->graphics.ceiling_color = 0xD8D2A8;
-	data->graphics.floor_color = 0x8D7F4F;
-}
 
 void render_background(t_bible *data)
 {

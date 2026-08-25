@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 21:01:41 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/22 15:16:06 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 17:45:41 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ char    **duplicate_map(char **og_map, int height)
         dup[y] = ft_strdup(og_map[y]);
         y++;
     }
-    dup[y] = '\0';
+    dup[y] = NULL;
     return (dup);
 }

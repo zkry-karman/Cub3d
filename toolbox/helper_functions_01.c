@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 13:02:35 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/25 16:13:26 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 17:44:19 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int    scan_copy_line(t_bible *master, t_line *curr, int x, int y)
 {
     int line_len;
 
-    line_len = ft_strlen(curr->line);
+    line_len = ft_strlen_cub3d(curr->line);
     while (x < line_len)
     {
         check_for_player_pos(master, curr, x, y);
