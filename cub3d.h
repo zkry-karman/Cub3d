@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/25 16:14:26 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 17:56:20 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ int		check_dup_we(t_bible *master);
 void	store_player_pos(t_bible *master, int x, int y, char direction);
 
 
-void init_mock_data(t_bible *data);
+
 int key_press(int key, t_bible *data);
 int close_window(t_bible *data);
 
@@ -159,7 +159,7 @@ void render_background(t_bible *data);
 void my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	render_frame(t_bible *data);
 
-int 	init_player_direction(t_player *player);
+void 	init_player_direction(t_player *player);
 void 	init_camera_plane(t_player *player);
 
 void 	render_rays(t_bible *data);
@@ -173,6 +173,7 @@ void	draw_line(t_ray *ray, t_bible *data, int x, t_img *tex);
 void	wall_hit(t_ray *ray, t_bible *data, t_img *tex);
 
 int		load_texture(t_bible *data, t_img *tex, char *path);
+int 	load_all_textures(t_bible *master);
 unsigned int get_texture_pixel(t_img *tex, int x, int y);
 t_img	*get_wall_texture(t_ray *ray, t_graphic *graphic);
 

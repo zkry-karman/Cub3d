@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/25 15:57:20 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/25 17:07:08 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int parse_map(t_bible *master, char *head, int fd)
             master->map.width = ft_strlen_cub3d(line);
         ft_add_new_node(&lines, line);
         master->map.height++;
-        free(line);
     }
     if (!pad_copy_map(master, lines))
         return (ft_lstclear_cub3d(&lines, free), 0);   
