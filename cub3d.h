@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/25 21:02:16 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/27 21:09:00 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
+# define MOUSE_SPEED 0.00025
 
 typedef struct s_line
 {
@@ -102,6 +103,14 @@ typedef struct s_ray
 	int		wall_type;
 }	t_ray;
 
+typedef struct s_wall_draw
+{
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+	int	wall_top;
+	int x;
+}	t_wall_draw;
 
 typedef struct s_player
 {
@@ -125,60 +134,67 @@ typedef struct  s_bible
     void        *mlx_win;
 }   t_bible;
 
-void    initialize_master(t_bible *master);
-int 	parse_cub_file(t_bible *master, char *file_path);
-void    parsing_failure(t_bible *master);
-int		parse_textures(t_bible *master, char *line);
-int 	parse_rgb(t_bible *master, char *line);
-int		parse_map(t_bible *master, char *head, int fd);
-int		check_xpm_files(t_bible *master);
-int		check_dup_rgb(t_bible *master, char *line);
-char    *skip_whitespace(char *line);
-int		check_other_configs(t_bible *master);
-int		scan_copy_line(t_bible *master, t_line *curr, int x, int y);
-int		pad_empty_spaces(t_bible *master, int x, int y);
-t_line	*initialize_map_dimensions(t_bible *master, char *head);
-int		ft_strlen_cub3d(char *str);
-void	ft_add_new_node(t_line **list, char *line);
-char	**duplicate_map(char **og_map, int height);
-void	free_double_pointer(char **arr);
-void	ft_lstclear_cub3d(t_line **lst, void (*del)(void *));
-char	*trim_backend(char *str);
-int		parse_textures(t_bible *master, char *line);
-int		check_dup_no(t_bible *master);
-int		check_dup_so(t_bible *master);
-int		check_dup_ea(t_bible *master);
-int		check_dup_we(t_bible *master);
-void	store_player_pos(t_bible *master, int x, int y, char direction);
-void    update_minimap(t_bible *master);
+void engine(t_bible *master);
 
-int key_press(int key, t_bible *data);
-int close_window(t_bible *data);
+void    		initialize_master(t_bible *master);
+int 			parse_cub_file(t_bible *master, char *file_path);
+void    		parsing_failure(t_bible *master);
+int				parse_textures(t_bible *master, char *line);
+int 			parse_rgb(t_bible *master, char *line);
+int				parse_map(t_bible *master, char *head, int fd);
+int				check_xpm_files(t_bible *master);
+int				check_dup_rgb(t_bible *master, char *line);
+char    		*skip_whitespace(char *line);
+int				check_other_configs(t_bible *master);
+int				scan_copy_line(t_bible *master, t_line *curr, int x, int y);
+int				pad_empty_spaces(t_bible *master, int x, int y);
+t_line			*initialize_map_dimensions(t_bible *master, char *head);
+int				ft_strlen_cub3d(char *str);
+void			ft_add_new_node(t_line **list, char *line);
+char			**duplicate_map(char **og_map, int height);
+void			free_double_pointer(char **arr);
+void			ft_lstclear_cub3d(t_line **lst, void (*del)(void *));
+char			*trim_backend(char *str);
+int				parse_textures(t_bible *master, char *line);
+int				check_dup_no(t_bible *master);
+int				check_dup_so(t_bible *master);
+int				check_dup_ea(t_bible *master);
+int				check_dup_we(t_bible *master);
+void			store_player_pos(t_bible *master, int x, int y, char direction);
+void    		update_minimap(t_bible *master);
 
-void render_background(t_bible *data);
-void my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	render_frame(t_bible *data);
+int				key_press(int key, t_bible *data);
+int				close_window(t_bible *data);
 
-void 	init_player_direction(t_player *player);
-void 	init_camera_plane(t_player *player);
+void			render_background(t_bible *data);
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			render_frame(t_bible *data);
 
-void 	render_rays(t_bible *data);
-void 	init_ray_for_column(t_player *player, t_ray *ray, int x);
-void 	init_delta_dist(t_ray *ray);
-void	init_dda_position(t_player *player, t_ray *ray);
-void	init_side_dist(t_player *player, t_ray *ray);
+void 			init_player_direction(t_player *player);
+void 			init_camera_plane(t_player *player);
 
-void 	run_dda(t_ray *ray, char **map);
-void	draw_line(t_ray *ray, t_bible *data, int x, t_img *tex);
-void	wall_hit(t_ray *ray, t_bible *data, t_img *tex);
+void 			render_rays(t_bible *data);
+void 			init_ray_for_column(t_player *player, t_ray *ray, int x);
+void 			init_delta_dist(t_ray *ray);
+void			init_dda_position(t_player *player, t_ray *ray);
+void			init_side_dist(t_player *player, t_ray *ray);
 
-int		load_texture(t_bible *data, t_img *tex, char *path);
-int 	load_all_textures(t_bible *master);
-unsigned int get_texture_pixel(t_img *tex, int x, int y);
-t_img	*get_wall_texture(t_ray *ray, t_graphic *graphic);
+void 			run_dda(t_ray *ray, char **map);
+void			draw_line(t_ray *ray, t_bible *data, int x, t_img *tex);
+void			draw_tex(t_ray *ray, t_bible *data, t_img *tex, t_wall_draw *draw);
+void			wall_hit(t_ray *ray, t_bible *data, t_img *tex);
 
-int move_hook(int keycode, t_bible *data);
-void move_player_WS(t_player *player, t_map *map, double amount);
-void move_player_AD(t_player *player, t_map *map, double amount);
+int				load_texture(t_bible *data, t_img *tex, char *path);
+int 			load_all_textures(t_bible *master);
+unsigned int	get_texture_pixel(t_img *tex, int x, int y);
+t_img			*get_wall_texture(t_ray *ray, t_graphic *graphic);
+
+int 			move_hook(int keycode, t_bible *data);
+void 			move_player_ws(t_player *player, t_map *map, double amount);
+void 			move_player_ad(t_player *player, t_map *map, double amount);
+int				mouse_move(int x, int y, t_bible *data);
+void			rotate_player(t_player *player, double angle);
+int				mouse_enter(t_bible *data);
+int				mouse_leave(t_bible *data);
 
 #endif

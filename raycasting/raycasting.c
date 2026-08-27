@@ -6,13 +6,13 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 16:16:13 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/24 16:09:54 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/27 20:36:10 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void run_dda(t_ray *ray, char **map)
+void	run_dda(t_ray *ray, char **map)
 {
 	ray->wall_flag = 0;
 	while (ray->wall_flag == 0)
@@ -40,37 +40,42 @@ void run_dda(t_ray *ray, char **map)
 	}
 }
 
-void draw_line(t_ray *ray, t_bible *data, int x, t_img *tex)
+void	draw_tex(t_ray *ray, t_bible *data, t_img *tex, t_wall_draw *draw)
 {
-	int line_height;
-	int draw_start;
-	int draw_end;
-	int wall_top;
-	int tex_y; // vertical pixel index inside the texture: 0 to texture_height - 1
-	int color;
-	int y;
+	int	y;
+	int	tex_y;
+	int	color;
 
-	line_height = HEIGHT / ray->wall_dist;
-	draw_start = -line_height / 2 + HEIGHT / 2;
-	draw_end = line_height / 2 + HEIGHT / 2;
-	wall_top = draw_start;
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end >= HEIGHT)
-		draw_end = HEIGHT - 1;
-	y = draw_start;
-	while (y <= draw_end)
+	y = draw->draw_start;
+	while (y <= draw->draw_end)
 	{
-		tex_y = (int)(((double)(y - wall_top) / line_height) * tex->height);
+		tex_y = (int)(((double)(y - draw->wall_top) / draw->line_height)
+				* tex->height);
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
 		color = get_texture_pixel(tex, ray->tex_x, tex_y);
-		my_mlx_pixel_put(&data->img, x, y, color);
+		my_mlx_pixel_put(&data->img, draw->x, y, color);
 		y++;
 	}
 }
 
-void wall_hit(t_ray *ray, t_bible *data, t_img *tex)
+void	draw_line(t_ray *ray, t_bible *data, int x, t_img *tex)
+{
+	t_wall_draw	draw;
+
+	draw.x = x;
+	draw.line_height = HEIGHT / ray->wall_dist;
+	draw.draw_start = -draw.line_height / 2 + HEIGHT / 2;
+	draw.draw_end = draw.line_height / 2 + HEIGHT / 2;
+	draw.wall_top = draw.draw_start;
+	if (draw.draw_start < 0)
+		draw.draw_start = 0;
+	if (draw.draw_end >= HEIGHT)
+		draw.draw_end = HEIGHT - 1;
+	draw_tex(ray, data, tex, &draw);
+}
+
+void	wall_hit(t_ray *ray, t_bible *data, t_img *tex)
 {
 	if (ray->wall_type == 0)
 		ray->wall_hit = data->player.y + ray->wall_dist * ray->dir_y;

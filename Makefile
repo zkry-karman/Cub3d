@@ -21,6 +21,7 @@ SRCS =  main.c \
 		raycasting/render_rays.c \
 		raycasting/texture_rendering.c \
 		movement/player_movement.c \
+		movement/mouse_movement.c \
 		toolbox/helper_functions_00.c \
 		toolbox/helper_functions_01.c \
 		toolbox/helper_functions_02.c \
