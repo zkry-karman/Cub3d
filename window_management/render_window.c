@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:50:30 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/25 17:25:55 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/27 15:15:28 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	render_frame(t_bible *data)
 {
 	render_background(data);
 	render_rays(data);
+	update_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img.img_ptr, 0, 0);
 }
 
