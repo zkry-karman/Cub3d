@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/27 15:14:12 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/27 19:24:45 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void engine(t_bible *master)
+{
+	render_frame(master);
+	mlx_key_hook(master->mlx_win, move_hook, master);
+	mlx_hook(master->mlx_win, 2, 1L<<0, 
+		(void *)key_press, master);
+	mlx_hook(master->mlx_win, 17, 1L<<17, 
+		(void *)close_window, master);
+	mlx_hook(master->mlx_win, 6, 1L << 6, 
+		mouse_move, master);
+	mlx_hook(master->mlx_win, 7, 1L << 4, mouse_enter, master);
+	mlx_hook(master->mlx_win, 8, 1L << 5, mouse_leave, master);
+	mlx_loop(master->mlx);
+}
 
 int main(int ac, char **av)
 {
@@ -36,41 +51,6 @@ int main(int ac, char **av)
 	master.img.addr = mlx_get_data_addr(master.img.img_ptr, &master.img.bits_per_pixel, &master.img.line_length, &master.img.endian);
 	if (!load_all_textures(&master))
 		return (parsing_failure(&master), 1);
-	render_frame(&master);
-	mlx_hook(master.mlx_win, 2, 1L<<0, (void *)key_press, &master);
-	mlx_hook(master.mlx_win, 17, 1L<<17, (void *)close_window, &master);
-	mlx_key_hook(master.mlx_win, move_hook, &master);
-	mlx_loop(master.mlx);
+	engine(&master);
 	return (0);
 }
-
-/*
-int main()
-{
-	t_bible data = {0};
-	
-	init_mock_data(&data);
-	if (!init_player_direction(&data.player))
-		return (1);
-	init_camera_plane(&data.player);
-	data.mlx = mlx_init();
-	if (!data.mlx)
-		return (1);
-	if (!load_walls(&data))
-		return (1);
-	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "cub3d");
-	if (!data.mlx_win)
-		return (free(data.mlx), 1);
-	data.img.img_ptr = mlx_new_image(data.mlx, WIDTH, HEIGHT);
-	if (!data.img.img_ptr)
-		return (free(data.mlx), free(data.mlx_win), 1);
-	data.img.addr = mlx_get_data_addr(data.img.img_ptr, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
-	render_frame(&data);
-	mlx_hook(data.mlx_win, 2, 1L<<0, (void *)key_press, &data);
-	mlx_hook(data.mlx_win, 17, 1L<<17, (void *)close_window, &data);
-	mlx_key_hook(data.mlx_win, move_hook, &data);
-	mlx_loop(data.mlx);
-	return (0);
-}
-*/
-
