@@ -6,23 +6,23 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:30:12 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/25 16:02:42 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/30 15:39:02 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    free_double_pointer(char **arr)
+void	free_double_pointer(char **arr)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (arr[i])
-    {
-        free(arr[i]);
-        i++;
-    }
-    free(arr);
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
 void	ft_lstdelone_cub3d(t_line *lst, void (*del)(void *))
