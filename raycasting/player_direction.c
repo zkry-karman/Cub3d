@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   player_direction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/02 18:51:23 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/25 17:14:18 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/27 20:36:29 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_player_direction(t_player *player)
+void	init_player_direction(t_player *player)
 {
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
@@ -26,7 +26,7 @@ void init_player_direction(t_player *player)
 		player->dir_x = 1.0;
 }
 
-void init_camera_plane(t_player *player)
+void	init_camera_plane(t_player *player)
 {
 	if (player->dir == 'N')
 	{

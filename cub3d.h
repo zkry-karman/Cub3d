@@ -41,6 +41,7 @@
 
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
+# define MOUSE_SPEED 0.00025
 
 typedef struct s_line
 {
