@@ -6,34 +6,34 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/30 15:18:12 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/30 15:41:18 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void engine(t_bible *master)
+void	engine(t_bible *master)
 {
 	render_frame(master);
 	mlx_key_hook(master->mlx_win, move_hook, master);
-	mlx_hook(master->mlx_win, 2, 1L<<0, 
+	mlx_hook(master->mlx_win, 2, 1L << 0, 
 		(void *)key_press, master);
-	mlx_hook(master->mlx_win, 17, 1L<<17, 
+	mlx_hook(master->mlx_win, 17, 1L << 17, 
 		(void *)close_window, master);
-	mlx_hook(master->mlx_win, 6, 1L << 6, 
+	mlx_hook(master->mlx_win, 6, 1L << 6,
 		mouse_move, master);
 	mlx_hook(master->mlx_win, 7, 1L << 4, mouse_enter, master);
 	mlx_hook(master->mlx_win, 8, 1L << 5, mouse_leave, master);
 	mlx_loop(master->mlx);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_bible		master;
 
-    if (ac != 2)
-        return (printf("ERROR\nIncorrect file compilation\n"), 1);
-    initialize_master(&master);
+	if (ac != 2)
+		return (printf("ERROR\nIncorrect file compilation\n"), 1);
+	initialize_master(&master);
 	if (!parse_cub_file(&master, av[1]))
 		return (parsing_failure(&master), 1);
 	init_player_direction(&master.player);
@@ -53,4 +53,3 @@ int main(int ac, char **av)
 	engine(&master);
 	return (0);
 }
-
