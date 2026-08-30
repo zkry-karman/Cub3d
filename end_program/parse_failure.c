@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:06:07 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/25 17:17:09 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/30 15:32:00 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void    parsing_failure(t_bible *master)
         free(master->graphics.ea_path);
     if (master->graphics.we_path)
         free(master->graphics.we_path);
-    //if (master->map.grid)
-        //free_double_pointer(master->map.grid);
+    if (master->map.grid)
+        free_double_pointer(master->map.grid);
 }

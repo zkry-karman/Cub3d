@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/27 19:24:45 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/08/30 15:18:12 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int main(int ac, char **av)
     initialize_master(&master);
 	if (!parse_cub_file(&master, av[1]))
 		return (parsing_failure(&master), 1);
-
 	init_player_direction(&master.player);
 	init_camera_plane(&master.player);
 	master.mlx = mlx_init();
@@ -54,3 +53,4 @@ int main(int ac, char **av)
 	engine(&master);
 	return (0);
 }
+
