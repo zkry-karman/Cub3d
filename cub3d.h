@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/25 21:02:16 by karmanz          ###   ########.fr       */
+/*   Updated: 2026/08/30 15:30:35 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,141 +44,140 @@
 
 typedef struct s_line
 {
-    char    *line;
-    struct s_line *next;
-}   t_line;
+	char			*line;
+	struct s_line	*next;
+}	t_line;
 
 typedef struct s_map
 {
-    char    **grid;
-    int     width;
-    int     height;
-	int		tile_size;
-}   t_map;
+	char			**grid;
+	int				width;
+	int				height;
+	int				tile_size;
+}	t_map;
 
 //for raycasting
 typedef struct s_img
 {
-    void    *img_ptr;
-    char    *addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
-	int		width;
-	int		height;
-}   t_img;
+	void			*img_ptr;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+}	t_img;
 
 typedef struct s_graphic
 {
-    char    *no_path;
-    char    *ea_path;
-    char    *so_path;
-    char    *we_path;
-	t_img	no_tex;
-	t_img	so_tex;
-	t_img	we_tex;
-	t_img	ea_tex;
-    int     floor_color;
-	int     ceiling_color;
-}   t_graphic;
+	char			*no_path;
+	char			*ea_path;
+	char			*so_path;
+	char			*we_path;
+	t_img			no_tex;
+	t_img			so_tex;
+	t_img			we_tex;
+	t_img			ea_tex;
+	int				floor_color;
+	int				ceiling_color;
+}	t_graphic;
 
 typedef struct s_ray
 {
-	double 	camera_x;
-	double 	dir_x;
-	double 	dir_y;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	wall_dist;
-	double	wall_hit;
-	int		tex_x;
-	int		wall_flag;
-	int		wall_type;
+	double			camera_x;
+	double			dir_x;
+	double			dir_y;
+	int				map_x;
+	int				map_y;
+	int				step_x;
+	int				step_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			wall_dist;
+	double			wall_hit;
+	int				tex_x;
+	int				wall_flag;
+	int				wall_type;
 }	t_ray;
-
 
 typedef struct s_player
 {
-    double	x;
-	double	y;
-	double  dir_x;
-    double  dir_y;
-    double  plane_x;
-    double  plane_y;
-	char	dir; //initial spawn orientation
-    int     player_count;
-}   t_player;
+	double			x;
+	double			y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	char			dir; //initial spawn orientation
+	int				player_count;
+}	t_player;
 
-typedef struct  s_bible
+typedef struct s_bible
 {
-    t_map       map;
-    t_player    player;
-	t_graphic	graphics;
-	t_img		img;
-    void        *mlx;
-    void        *mlx_win;
-}   t_bible;
+	t_map			map;
+	t_player		player;
+	t_graphic		graphics;
+	t_img			img;
+	void			*mlx;
+	void			*mlx_win;
+}	t_bible;
 
-void    initialize_master(t_bible *master);
-int 	parse_cub_file(t_bible *master, char *file_path);
-void    parsing_failure(t_bible *master);
-int		parse_textures(t_bible *master, char *line);
-int 	parse_rgb(t_bible *master, char *line);
-int		parse_map(t_bible *master, char *head, int fd);
-int		check_xpm_files(t_bible *master);
-int		check_dup_rgb(t_bible *master, char *line);
-char    *skip_whitespace(char *line);
-int		check_other_configs(t_bible *master);
-int		scan_copy_line(t_bible *master, t_line *curr, int x, int y);
-int		pad_empty_spaces(t_bible *master, int x, int y);
-t_line	*initialize_map_dimensions(t_bible *master, char *head);
-int		ft_strlen_cub3d(char *str);
-void	ft_add_new_node(t_line **list, char *line);
-char	**duplicate_map(char **og_map, int height);
-void	free_double_pointer(char **arr);
-void	ft_lstclear_cub3d(t_line **lst, void (*del)(void *));
-char	*trim_backend(char *str);
-int		parse_textures(t_bible *master, char *line);
-int		check_dup_no(t_bible *master);
-int		check_dup_so(t_bible *master);
-int		check_dup_ea(t_bible *master);
-int		check_dup_we(t_bible *master);
-void	store_player_pos(t_bible *master, int x, int y, char direction);
-void    update_minimap(t_bible *master);
+void			initialize_master(t_bible *master);
+int				parse_cub_file(t_bible *master, char *file_path);
+void			parsing_failure(t_bible *master);
+int				parse_textures(t_bible *master, char *line);
+int				parse_rgb(t_bible *master, char *line);
+int				parse_map(t_bible *master, char *head, int fd);
+int				check_xpm_files(t_bible *master);
+int				check_dup_rgb(t_bible *master, char *line);
+char			*skip_whitespace(char *line);
+int				check_other_configs(t_bible *master);
+int				scan_copy_line(t_bible *master, t_line *curr, int x, int y);
+int				pad_empty_spaces(t_bible *master, int x, int y);
+t_line			*initialize_map_dimensions(t_bible *master, char *head);
+int				ft_strlen_cub3d(char *str);
+void			ft_add_new_node(t_line **list, char *line);
+char			**duplicate_map(char **og_map, int height);
+void			free_double_pointer(char **arr);
+void			ft_lstclear_cub3d(t_line **lst, void (*del)(void *));
+char			*trim_backend(char *str);
+int				parse_textures(t_bible *master, char *line);
+int				check_dup_no(t_bible *master);
+int				check_dup_so(t_bible *master);
+int				check_dup_ea(t_bible *master);
+int				check_dup_we(t_bible *master);
+void			store_player_pos(t_bible *master, int x, int y, char direction);
+void			update_minimap(t_bible *master);
 
-int key_press(int key, t_bible *data);
-int close_window(t_bible *data);
+int				key_press(int key, t_bible *data);
+int				close_window(t_bible *data);
 
-void render_background(t_bible *data);
-void my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	render_frame(t_bible *data);
+void			render_background(t_bible *data);
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void			render_frame(t_bible *data);
 
-void 	init_player_direction(t_player *player);
-void 	init_camera_plane(t_player *player);
+void			init_player_direction(t_player *player);
+void			init_camera_plane(t_player *player);
 
-void 	render_rays(t_bible *data);
-void 	init_ray_for_column(t_player *player, t_ray *ray, int x);
-void 	init_delta_dist(t_ray *ray);
-void	init_dda_position(t_player *player, t_ray *ray);
-void	init_side_dist(t_player *player, t_ray *ray);
+void			render_rays(t_bible *data);
+void			init_ray_for_column(t_player *player, t_ray *ray, int x);
+void			init_delta_dist(t_ray *ray);
+void			init_dda_position(t_player *player, t_ray *ray);
+void			init_side_dist(t_player *player, t_ray *ray);
 
-void 	run_dda(t_ray *ray, char **map);
-void	draw_line(t_ray *ray, t_bible *data, int x, t_img *tex);
-void	wall_hit(t_ray *ray, t_bible *data, t_img *tex);
+void			run_dda(t_ray *ray, char **map);
+void			draw_line(t_ray *ray, t_bible *data, int x, t_img *tex);
+void			wall_hit(t_ray *ray, t_bible *data, t_img *tex);
 
-int		load_texture(t_bible *data, t_img *tex, char *path);
-int 	load_all_textures(t_bible *master);
-unsigned int get_texture_pixel(t_img *tex, int x, int y);
-t_img	*get_wall_texture(t_ray *ray, t_graphic *graphic);
+int				load_texture(t_bible *data, t_img *tex, char *path);
+int				load_all_textures(t_bible *master);
+unsigned int	get_texture_pixel(t_img *tex, int x, int y);
+t_img			*get_wall_texture(t_ray *ray, t_graphic *graphic);
 
-int move_hook(int keycode, t_bible *data);
-void move_player_WS(t_player *player, t_map *map, double amount);
-void move_player_AD(t_player *player, t_map *map, double amount);
+int				move_hook(int keycode, t_bible *data);
+void			move_player_WS(t_player *player, t_map *map, double amount);
+void			move_player_AD(t_player *player, t_map *map, double amount);
 
 #endif
