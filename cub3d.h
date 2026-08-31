@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/30 15:30:35 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/08/31 12:23:31 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,15 @@ typedef struct s_ray
 	int				wall_type;
 }	t_ray;
 
+typedef struct s_wall_draw
+{
+	int	line_height;
+	int	draw_start;
+	int	draw_end;
+	int	wall_top;
+	int	x;
+}	t_wall_draw;
+
 typedef struct s_player
 {
 	double			x;
@@ -180,5 +189,8 @@ t_img			*get_wall_texture(t_ray *ray, t_graphic *graphic);
 int				move_hook(int keycode, t_bible *data);
 void			move_player_WS(t_player *player, t_map *map, double amount);
 void			move_player_AD(t_player *player, t_map *map, double amount);
-
+void			rotate_player(t_player *player, double angle);
+int				mouse_enter(t_bible *data);
+int				mouse_leave(t_bible *data);
+int				mouse_move(int x, int y, t_bible *data);
 #endif
