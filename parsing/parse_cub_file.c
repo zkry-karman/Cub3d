@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/09/01 16:01:04 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/01 16:42:54 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int	validate_map(t_bible *master, char *line, int fd)
 
 int	validate_tex_col(t_bible *master, char *curr)
 {
+	if (*curr == '\0' || *curr == '\n')
+		return (1);
 	if (ft_strncmp(curr, "NO", 2) == 0 || ft_strncmp(curr, "SO", 2) == 0
 		|| ft_strncmp(curr, "EA", 2) == 0 || ft_strncmp(curr, "WE", 2) == 0)
 	{
-		if (!parse_textures(master, curr))
-			return (0);
+		return (parse_textures(master, curr));
 	}
 	else if (ft_strncmp(curr, "F", 1) == 0 || ft_strncmp(curr, "C", 1) == 0)
 	{
-		if (!parse_rgb(master, curr))
-			return (0);
+		return (parse_rgb(master, curr));
 	}
 	return (1);
 }
@@ -41,22 +41,23 @@ int	read_file(t_bible *master, int fd)
 {
 	char	*line;
 	char	*curr;
-	int		status;
-
 	line = get_next_line(fd);
 	while (line)
 	{
 		curr = skip_whitespace(line);
-		if (!validate_tex_col(master, curr))
-			return (free(line), 0);
+		if (ft_strncmp(curr, "NO", 2) == 0 || ft_strncmp(curr, "SO", 2) == 0
+			|| ft_strncmp(curr, "EA", 2) == 0 || ft_strncmp(curr, "WE", 2) == 0
+			|| ft_strncmp(curr, "F", 1) == 0 || ft_strncmp(curr, "C", 1) == 0)
+		{
+			if (!validate_tex_col(master, curr))
+				return (free(line), 0);
+		}
 		else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0
 			|| ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0
 			|| ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
-			{
-				status = validate_map(master, line, fd);
-				free(line);
-				return (status);
-			}
+			return (validate_map(master, line, fd));
+		else if (*curr != '\0' && *curr != '\n')
+			return (free(line), 0);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -88,13 +89,18 @@ int	parse_cub_file(t_bible *master, char *file_path)
 		return (printf("Error\nMap file must have .cub extension\n"), 0);
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
-		return (printf("Error\nCannont open file\n"), 0);
-	if (!read_file(master, fd) || !check_xpm_files(master))
+		return (printf("Error\nCannot open file\n"), 0);
+	if (!read_file(master, fd))
 	{
 		close(fd);
 		parsing_failure(master);
 		return (0);
 	}
 	close(fd);
+	if (!check_xpm_files(master))
+	{
+		parsing_failure(master);
+		return (0);
+	}
 	return (1);
 }
