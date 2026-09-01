@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/31 12:23:31 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/01 15:35:51 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,9 +124,16 @@ typedef struct s_player
 	int				player_count;
 }	t_player;
 
+typedef struct s_mini
+{
+	int		rad;
+	int		mid[2];
+}	t_mini;
+
 typedef struct s_bible
 {
 	t_map			map;
+	t_mini			mini;
 	t_player		player;
 	t_graphic		graphics;
 	t_img			img;
@@ -160,6 +167,8 @@ int				check_dup_ea(t_bible *master);
 int				check_dup_we(t_bible *master);
 void			store_player_pos(t_bible *master, int x, int y, char direction);
 void			update_minimap(t_bible *master);
+void			initialize_minimap_stats(t_bible *master);
+void			read_map(t_bible *master, char *line, t_line *lines);
 
 int				key_press(int key, t_bible *data);
 int				close_window(t_bible *data);
@@ -187,8 +196,8 @@ unsigned int	get_texture_pixel(t_img *tex, int x, int y);
 t_img			*get_wall_texture(t_ray *ray, t_graphic *graphic);
 
 int				move_hook(int keycode, t_bible *data);
-void			move_player_WS(t_player *player, t_map *map, double amount);
-void			move_player_AD(t_player *player, t_map *map, double amount);
+void			move_player_ws(t_player *player, t_map *map, double amount);
+void			move_player_ad(t_player *player, t_map *map, double amount);
 void			rotate_player(t_player *player, double angle);
 int				mouse_enter(t_bible *data);
 int				mouse_leave(t_bible *data);

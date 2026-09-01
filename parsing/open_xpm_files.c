@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_xpm_files.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 13:50:37 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/30 16:07:54 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/01 13:46:15 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	check_xpm_files(t_bible *master)
 	int	fd_ea;
 	int	fd_we;
 
-	if (!master->graphics.no_path || !master->graphics.ea_path || !master->graphics.so_path || !master->graphics.we_path)
+	if (!master->graphics.no_path || !master->graphics.ea_path
+		|| !master->graphics.so_path || !master->graphics.we_path)
 	{
 		printf("Error\nMissing a .XPM file\n");
 		return (0);

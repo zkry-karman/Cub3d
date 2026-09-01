@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/08/30 16:08:46 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/01 13:48:06 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	validate_rgb_values(char **rgb)
 		value = ft_atoi(rgb[i]);
 		if (value < 0 || value > 255)
 		{
-			printf("Error\nInvalide floor or ceiling color\nValues must be between 0 and 255");
+			printf("Error\nInvalide floor or ceiling color");
+			printf("Values must be between 0 and 255");
 			return (0);
 		}
 		i++;
@@ -78,6 +79,7 @@ int	parse_rgb(t_bible *master, char *line)
 {
 	char	**rgb;
 
+	rgb = NULL;
 	if (ft_strncmp(line, "F", 1) == 0)
 	{
 		if (!check_dup_rgb(master, line))
@@ -96,6 +98,7 @@ int	parse_rgb(t_bible *master, char *line)
 			return (0);
 		assign_ceiling_rgb(master, rgb);
 	}
-	free_double_pointer(rgb);
+	if (rgb)
+		free_double_pointer(rgb);
 	return (1);
 }
