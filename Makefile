@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -IGNL -std=gnu17 -I. -I./mlx
 MLXFLAGS = -L./mlx -lmlx -lXext -lX11 -lm -lz
