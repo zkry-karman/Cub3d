@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 15:31:20 by karmanz           #+#    #+#             */
-/*   Updated: 2026/09/01 12:35:10 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/01 12:48:34 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int    get_minimap_color(t_bible *master, double world_x, double world_y)
         || map_y >= master->map.height)
         return (0x1A1A1A);
     if (master->map.grid[map_y][map_x] == '1')
-        return (0x808080);
-    return (0x000000);
+        return (0x856A24);
+    return (0xE8D15A);
 }
 
 void    update_minimap(t_bible *master)
