@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/09/01 16:42:54 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/01 16:49:31 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	read_file(t_bible *master, int fd)
 {
 	char	*line;
 	char	*curr;
+
 	line = get_next_line(fd);
 	while (line)
 	{
