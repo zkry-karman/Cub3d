@@ -6,39 +6,59 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/08/30 16:14:12 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/01 16:01:04 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	validate_map(t_bible *master, char *line, int fd)
+{
+	if (!check_other_configs(master))
+		return (0);
+	if (!parse_map(master, line, fd))
+		return (0);
+	return (1);
+}
+
+int	validate_tex_col(t_bible *master, char *curr)
+{
+	if (ft_strncmp(curr, "NO", 2) == 0 || ft_strncmp(curr, "SO", 2) == 0
+		|| ft_strncmp(curr, "EA", 2) == 0 || ft_strncmp(curr, "WE", 2) == 0)
+	{
+		if (!parse_textures(master, curr))
+			return (0);
+	}
+	else if (ft_strncmp(curr, "F", 1) == 0 || ft_strncmp(curr, "C", 1) == 0)
+	{
+		if (!parse_rgb(master, curr))
+			return (0);
+	}
+	return (1);
+}
+
 int	read_file(t_bible *master, int fd)
 {
 	char	*line;
 	char	*curr;
+	int		status;
 
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		curr = skip_whitespace(line);
-		if (ft_strncmp(curr, "NO", 2) == 0 || ft_strncmp(curr, "SO", 2) == 0 || ft_strncmp(curr, "EA", 2) == 0 || ft_strncmp(curr, "WE", 2) == 0)
-		{
-			if (!parse_textures(master, curr))
-				return (free(line), 0);
-		}
-		else if (ft_strncmp(curr, "F", 1) == 0 || ft_strncmp(curr, "C", 1) == 0)
-		{
-			if (!parse_rgb(master, curr))
-				return (free(line), 0);
-		}
-		else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0 || ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0 || ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
-		{
-			if (!check_other_configs(master))
-				return (free(line), 0);
-			if (!parse_map(master, line, fd))
-				return (0);
-			return (1);
-		}
+		if (!validate_tex_col(master, curr))
+			return (free(line), 0);
+		else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0
+			|| ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0
+			|| ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
+			{
+				status = validate_map(master, line, fd);
+				free(line);
+				return (status);
+			}
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (1);
 }
