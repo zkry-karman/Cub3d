@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 16:13:34 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/06 16:33:34 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ static long		ft_atol(const char *str);
 
 int				key_press(int key, t_bible *data);
 int				close_window(t_bible *data);
+void			destory_images(t_bible *data);
 
 void			render_background(t_bible *data);
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
