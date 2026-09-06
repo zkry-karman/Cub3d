@@ -35,6 +35,43 @@ To compile the project, run make. To run the program, run the executable along w
 
 ex: ./cub3D MAPS/...
 
+To suppress leaks and errors coming from the mlx library, you can run valgrind along with the following command:
+
+valgrind --suppressions=mlx.supp --leak-check=full 
+
+along with creating a mlx.supp file containing the following elements: 
+
+{
+   ignore_mlx_and_x11_leaks
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/libX11.so*
+}
+{
+   ignore_mlx_init_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:XOpenDisplay
+   fun:mlx_init
+}
+{
+   ignore_writev_param_all_mlx
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   ...
+   obj:*/cub3d
+}
+{
+   ignore_all_x_reachable
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   obj:*/lib*.so*
+}
+
 **Resources**
 cub3d project introduction
 https://hackmd.io/@nszl/H1LXByIE2
