@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_RGB.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 16:17:01 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/06 17:02:31 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,16 @@ int	validate_rgb_values(char **rgb)
 char	**validate_rgb(char *line)
 {
 	char	**rgb;
+	char	*trimmed;
 
 	line = skip_whitespace(line);
-	rgb = ft_split(line, ',');
+	trimmed = ft_strtrim(line, " \t\n\r\v\f");
+	if (!trimmed)
+		return (NULL);
+	rgb = ft_split(trimmed, ',');
+	free(trimmed);
+	if (!rgb)
+		return (NULL);
 	if (!validate_rgb_values(rgb))
 	{
 		free_double_pointer(rgb);

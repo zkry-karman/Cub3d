@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_master_struct.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/20 16:15:11 by karmanz           #+#    #+#             */
-/*   Updated: 2026/09/06 16:30:03 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/06 16:50:56 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void	initialize_master(t_bible *master)
 	master->mlx_win = NULL;
 	master->mlx_win = NULL;
 	master->img.img_ptr = NULL;
+	initialize_player_state(master);
+	initialize_graphics(master);
 	initialize_minimap_stats(master);
 }

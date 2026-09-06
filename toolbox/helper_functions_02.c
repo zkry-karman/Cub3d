@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions_02.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 16:11:59 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 16:18:39 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/06 16:52:10 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int		is_all_dig(char *str)
+int		is_all_dig(char *str)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ static int		is_all_dig(char *str)
 	return (1);
 }
 
-static long		ft_atol(const char *str)
+long		ft_atol(const char *str)
 {
 	long	res;
 	int		i;
@@ -40,7 +40,7 @@ static long		ft_atol(const char *str)
 		res = res * 10 + (str[i] - '0');
 		if (res > 2147483647)
 			return (2147483648L);
-			i++;
+		i++;
 	}
 	return (res);
 }
