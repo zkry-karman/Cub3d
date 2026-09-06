@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 16:33:34 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/06 16:41:33 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,8 @@ void			store_player_pos(t_bible *master, int x, int y, char direction);
 void			update_minimap(t_bible *master);
 void			initialize_minimap_stats(t_bible *master);
 void			read_map(t_bible *master, char *line, t_line *lines);
-static long		ft_atol(const char *str);
+long			ft_atol(const char *str);
+int				is_all_dig(char *str);
 
 int				key_press(int key, t_bible *data);
 int				close_window(t_bible *data);
