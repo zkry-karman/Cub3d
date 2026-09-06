@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/01 16:29:29 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/06 16:17:01 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,21 @@
 
 int	validate_rgb_values(char **rgb)
 {
-	int	i;
-	int	value;
+	int		i;
+	long	value;
 
 	i = 0;
 	while (rgb[i])
 	{
-		value = ft_atoi(rgb[i]);
+		if (!is_all_dig(rgb[i]))
+			return (printf("Error\nRGB values must contain digits only\n"), 0);
+		if (ft_strlen(rgb[i]) > 3)
+			return (printf("Error\nRGB value overflows standard 0-255 range\n"), 0);
+		value = ft_atol(rgb[i]);
 		if (value < 0 || value > 255)
 		{
-			printf("Error\nInvalide floor or ceiling color");
-			printf("Values must be between 0 and 255");
+			printf("Error\nInvalide floor or ceiling color\n");
+			printf("Values must be between 0 and 255\n");
 			return (0);
 		}
 		i++;

@@ -169,6 +169,7 @@ void			store_player_pos(t_bible *master, int x, int y, char direction);
 void			update_minimap(t_bible *master);
 void			initialize_minimap_stats(t_bible *master);
 void			read_map(t_bible *master, char *line, t_line *lines);
+static long		ft_atol(const char *str);
 
 int				key_press(int key, t_bible *data);
 int				close_window(t_bible *data);

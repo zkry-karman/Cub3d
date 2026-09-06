@@ -6,11 +6,44 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 16:11:59 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/01 15:35:08 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/06 16:18:39 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int		is_all_dig(char *str)
+{
+	int		i;
+
+	i = 0;
+	if (!str || !str[0])
+		return (0);
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+static long		ft_atol(const char *str)
+{
+	long	res;
+	int		i;
+
+	res = 0;
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + (str[i] - '0');
+		if (res > 2147483647)
+			return (2147483648L);
+			i++;
+	}
+	return (res);
+}
 
 void	read_map(t_bible *master, char *line, t_line *lines)
 {
