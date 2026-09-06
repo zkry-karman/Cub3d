@@ -13,7 +13,7 @@ SRCS =  main.c \
 		parsing/parse_RGB.c \
 		parsing/parse_textures.c \
 		end_program/free_memory.c \
-		end_program/parse_failure.c \
+		end_program/cleanup.c \
 		window_management/render_window.c \
 		window_management/hooks_closing.c \
 		raycasting/player_direction.c \

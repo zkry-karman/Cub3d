@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:26:25 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/08/27 21:05:08 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/06 16:35:27 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,17 @@
 
 int	close_window(t_bible *data)
 {
-	mlx_destroy_window(data->mlx, data->mlx_win);
+	parsing_failure(data);
+	destory_images(data);
+	if (data->mlx_win)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free (data->mlx);
+	}
 	exit(0);
+	retrun (0);
 }
 
 int	key_press(int key, t_bible *data)
