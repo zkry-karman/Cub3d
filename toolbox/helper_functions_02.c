@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_functions_02.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 16:11:59 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/09 16:18:47 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/09 17:25:26 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,21 @@ int	is_all_dig(char *str)
 {
 	int		i;
 
-	i = 0;
-	if (!str || !str[0])
+	if (!str)
 		return (0);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	}
+	if (str[i] == '+')
+		i++;
+	if (str[i] < '0' || str[i] > '9')
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13) || str[i] == '\n')
+		i++;
+	if (str[i] != '\0')
+		return (0);
 	return (1);
 }
 
@@ -32,17 +38,27 @@ long	ft_atol(const char *str)
 {
 	long	res;
 	int		i;
+	int		sign;
 
 	res = 0;
 	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - '0');
-		if (res > 2147483647)
-			return (2147483648L);
+		if (res < 0)
+			return (-1);
 		i++;
 	}
-	return (res);
+	return (res * sign);
 }
 
 void	read_map(t_bible *master, char *line, t_line *lines)
