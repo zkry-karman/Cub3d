@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/09/01 16:49:31 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/09 16:55:39 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	validate_map(t_bible *master, char *line, int fd)
 {
 	if (!check_other_configs(master))
-		return (0);
+		return (free(line), clear_gnl_stash(fd), 0);
 	if (!parse_map(master, line, fd))
-		return (0);
+		return (free(line), clear_gnl_stash(fd), 0);
 	return (1);
 }
 
@@ -51,14 +51,14 @@ int	read_file(t_bible *master, int fd)
 			|| ft_strncmp(curr, "F", 1) == 0 || ft_strncmp(curr, "C", 1) == 0)
 		{
 			if (!validate_tex_col(master, curr))
-				return (free(line), 0);
+				return (free(line), clear_gnl_stash(fd), 0);
 		}
 		else if (ft_strncmp(curr, "1", 1) == 0 || ft_strncmp(curr, "0", 1) == 0
 			|| ft_strncmp(curr, "N", 1) == 0 || ft_strncmp(curr, "S", 1) == 0
 			|| ft_strncmp(curr, "E", 1) == 0 || ft_strncmp(curr, "W", 1) == 0)
 			return (validate_map(master, line, fd));
 		else if (*curr != '\0' && *curr != '\n')
-			return (free(line), 0);
+			return (free(line), clear_gnl_stash(fd), 0);
 		free(line);
 		line = get_next_line(fd);
 	}

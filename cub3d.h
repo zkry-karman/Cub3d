@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/09 16:05:31 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/09 16:52:12 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ void			initialize_minimap_stats(t_bible *master);
 void			read_map(t_bible *master, char *line, t_line *lines);
 long			ft_atol(const char *str);
 int				is_all_dig(char *str);
+void			clear_gnl_stash(int fd);
 
 int				key_press(int key, t_bible *data);
 int				close_window(t_bible *data);
