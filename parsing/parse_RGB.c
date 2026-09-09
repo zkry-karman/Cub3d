@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_RGB.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:09 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 17:02:31 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/09 16:13:24 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	validate_rgb_values(char **rgb)
 		if (!is_all_dig(rgb[i]))
 			return (printf("Error\nRGB values must contain digits only\n"), 0);
 		if (ft_strlen(rgb[i]) > 3)
-			return (printf("Error\nRGB value overflows standard 0-255 range\n"), 0);
+			return (printf("Error\nRGB value overflows standard range\n"), 0);
 		value = ft_atol(rgb[i]);
 		if (value < 0 || value > 255)
 		{
