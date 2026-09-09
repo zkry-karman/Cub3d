@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 16:48:41 by kzhu@studen       #+#    #+#             */
-/*   Updated: 2026/09/01 16:03:06 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/09 15:51:13 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	engine(t_bible *master)
 	mlx_hook(master->mlx_win, 17, 1L << 17,
 		(void *)close_window, master);
 	mlx_hook(master->mlx_win, 6, 1L << 6, (int (*)())mouse_move, master);
-	mlx_hook(master->mlx_win, 7, 1L << 4, (int (*)())mouse_enter, master);
-	mlx_hook(master->mlx_win, 8, 1L << 5, (int (*)())mouse_leave, master);
 	mlx_loop(master->mlx);
 }
 
