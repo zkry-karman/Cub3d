@@ -6,13 +6,13 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 16:11:59 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 16:52:10 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/09 16:18:47 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		is_all_dig(char *str)
+int	is_all_dig(char *str)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ int		is_all_dig(char *str)
 	return (1);
 }
 
-long		ft_atol(const char *str)
+long	ft_atol(const char *str)
 {
 	long	res;
 	int		i;
