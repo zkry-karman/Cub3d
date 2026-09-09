@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
+/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:06:07 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/09 16:19:05 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/09 16:51:39 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,16 @@ void	destory_images(t_bible *data)
 		mlx_destroy_image(data->mlx, data->graphics.ea_tex.img_ptr);
 	if (data->graphics.we_tex.img_ptr)
 		mlx_destroy_image(data->mlx, data->graphics.we_tex.img_ptr);
+}
+
+void	clear_gnl_stash(int fd)
+{
+	char	*line;
+
+	line = get_next_line(fd);
+	while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
 }
