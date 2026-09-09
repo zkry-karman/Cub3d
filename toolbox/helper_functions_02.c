@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 16:11:59 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/09 17:23:04 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/09 17:25:26 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_all_dig(char *str)
 		return (0);
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
-	while(str[i] == ' ' || (str[i] >= 9 && str[i] <= 13) || str[i] == '\n')
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13) || str[i] == '\n')
 		i++;
 	if (str[i] != '\0')
 		return (0);

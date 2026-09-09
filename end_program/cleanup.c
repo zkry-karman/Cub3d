@@ -6,7 +6,7 @@
 /*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 15:06:07 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/09 16:51:39 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/09 17:25:47 by zkarman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	clear_gnl_stash(int fd)
 	char	*line;
 
 	line = get_next_line(fd);
-	while(line)
+	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
