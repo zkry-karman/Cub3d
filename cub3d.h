@@ -6,7 +6,7 @@
 /*   By: kzhu@student.42.fr <kzhu>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/19 14:17:02 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/06 16:41:33 by kzhu@student.42.f###   ########.fr       */
+/*   Updated: 2026/09/09 16:05:31 by kzhu@student.42.f###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
-# define MOUSE_SPEED 0.00025
+# define MOUSE_SPEED 0.000067
 
 typedef struct s_line
 {
@@ -202,7 +202,5 @@ int				move_hook(int keycode, t_bible *data);
 void			move_player_ws(t_player *player, t_map *map, double amount);
 void			move_player_ad(t_player *player, t_map *map, double amount);
 void			rotate_player(t_player *player, double angle);
-int				mouse_enter(t_bible *data);
-int				mouse_leave(t_bible *data);
 int				mouse_move(int x, int y, t_bible *data);
 #endif
