@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 14:43:21 by zkarman           #+#    #+#             */
-/*   Updated: 2026/09/01 15:35:27 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/09 23:19:25 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ int	parse_map(t_bible *master, char *head, int fd)
 	}
 	if (!pad_copy_map(master, lines))
 		return (ft_lstclear_cub3d(&lines, free), 0);
-	ft_lstclear_cub3d(&lines, free);
 	if (!check_characters(master))
-		return (0);
+		return (ft_lstclear_cub3d(&lines, free), 0);
+	ft_lstclear_cub3d(&lines, free);
 	map_copy = duplicate_map(master->map.grid, master->map.height);
 	if (!map_copy)
 		return (0);
