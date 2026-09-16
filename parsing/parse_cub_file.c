@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zkarman <zkarman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: karmanz <karmanz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/24 19:21:47 by karmanz           #+#    #+#             */
-/*   Updated: 2026/09/09 16:55:39 by zkarman          ###   ########.fr       */
+/*   Updated: 2026/09/09 23:19:48 by karmanz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	validate_map(t_bible *master, char *line, int fd)
 	if (!check_other_configs(master))
 		return (free(line), clear_gnl_stash(fd), 0);
 	if (!parse_map(master, line, fd))
-		return (free(line), clear_gnl_stash(fd), 0);
+		return (clear_gnl_stash(fd), 0);
 	return (1);
 }
 
